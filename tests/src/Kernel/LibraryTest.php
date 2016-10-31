@@ -48,7 +48,7 @@ class LibraryTest extends KernelTestBase {
 
   public function testLibrary() {
     $this->assertSame('wet_boew', $this->pluginManager->getLibraryName());
-    $this->assertSame('/profiles/wxt/libraries/theme-wet-boew', $this->pluginManager->getLibraryPath());
+    $this->assertSame('/libraries/theme-wet-boew', $this->pluginManager->getLibraryPath());
   }
 
 }
