@@ -1,5 +1,5 @@
 {
-    "name": "drupalwxt/wxt_library",
+    "name": "drupal/wxt_library",
     "description": "Registers WxT Bootstrap using native libraries.",
     "type": "drupal-module",
     "license": "GPL-2.0+",
