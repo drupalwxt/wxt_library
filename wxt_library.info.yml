@@ -1,0 +1,16 @@
+name: WxT Library
+description: Registers WxT Boostrap as a library.
+type: module
+package: WxT
+core: 8.x
+configure: wxt_library.admin
+
+# Required modules
+dependencies:
+  - language
+  - search
+
+# Required libraries
+libraries:
+  - wxt_library/wet-boew
+  - wxt_library/wet-boew-dev
