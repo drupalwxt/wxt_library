@@ -63,14 +63,23 @@ class UserAccountBlock extends BlockBase implements ContainerFactoryPluginInterf
    */
   public function build() {
     $account_name = $this->currentUser->getAccountName();
-
+    $roles = $this->currentUser->getRoles();
     $build = [];
+
     $build['user_account_block']['#markup'] = '<section id="wb-so">';
     $build['user_account_block']['#markup'] .= '<h2 class="wb-inv">' . $this->t('Sign-on information') . '</h2>';
     $build['user_account_block']['#markup'] .= '<div class="col-md-12 text-right">';
-    $build['user_account_block']['#markup'] .= '<p class="btn">' . $this->t('Signed in as') . '<span class="wb-so-uname">' . ' ' . $account_name . '</span></p>';
-    $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Account settings'), Url::fromRoute('user.page', [], ['attributes' => ['class' => 'btn btn-default']]))->toString() . "\n";
-    $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign out'), Url::fromRoute('user.logout', [], ['attributes' => ['class' => 'btn btn-primary']]))->toString() . "\n";
+
+    if(!in_array("authenticated", $roles)) {
+      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Register'), Url::fromRoute('user.register', [], ['attributes' => ['class' => 'btn btn-default']]))->toString() . "\n";
+      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign in'), Url::fromRoute('user.login', [], ['attributes' => ['class' => 'btn btn-primary']]))->toString() . "\n";
+    }
+    else {
+      $build['user_account_block']['#markup'] .= '<p class="btn">' . $this->t('Signed in as') . '<span class="wb-so-uname">' . ' ' . $account_name . '</span></p>';
+      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Account settings'), Url::fromRoute('user.page', [], ['attributes' => ['class' => 'btn btn-default']]))->toString() . "\n";
+      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign out'), Url::fromRoute('user.logout', [], ['attributes' => ['class' => 'btn btn-primary']]))->toString() . "\n";
+    }
+
     $build['user_account_block']['#markup'] .= '</div></section>';
     return $build;
   }
