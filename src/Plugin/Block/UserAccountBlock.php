@@ -70,7 +70,7 @@ class UserAccountBlock extends BlockBase implements ContainerFactoryPluginInterf
     $build['user_account_block']['#markup'] .= '<h2 class="wb-inv">' . $this->t('Sign-on information') . '</h2>';
     $build['user_account_block']['#markup'] .= '<div class="col-md-12 text-right">';
 
-    if(!in_array("authenticated", $roles)) {
+    if (!in_array("authenticated", $roles)) {
       $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Register'), Url::fromRoute('user.register', [], ['attributes' => ['class' => 'btn btn-default']]))->toString() . "\n";
       $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign in'), Url::fromRoute('user.login', [], ['attributes' => ['class' => 'btn btn-primary']]))->toString() . "\n";
     }

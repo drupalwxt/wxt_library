@@ -72,7 +72,7 @@ class Libraries extends PluginBase implements CKEditorPluginInterface, CKEditorP
   /**
    * {@inheritdoc}
    */
-  function isEnabled(Editor $editor) {
+  public function isEnabled(Editor $editor) {
     return TRUE;
   }
 

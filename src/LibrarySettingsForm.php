@@ -7,6 +7,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -44,6 +45,13 @@ class LibrarySettingsForm extends ConfigFormBase {
   protected $jsCollectionOptimizer;
 
   /**
+   * The theme handler.
+   *
+   * @var \Drupal\Core\Extension\ThemeHandlerInterface
+   */
+  protected $themeHandler;
+
+  /**
    * Constructs a LibrarySettingsForm object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -55,14 +63,17 @@ class LibrarySettingsForm extends ConfigFormBase {
    *   The CSS asset collection optimizer service.
    * @param \Drupal\Core\Asset\AssetCollectionOptimizerInterface $js_collection_optimizer
    *   The JavaScript asset collection optimizer service.
+   * @param \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler
+   *   The theme handler.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, CacheBackendInterface $render_cache, DateFormatterInterface $date_formatter, AssetCollectionOptimizerInterface $css_collection_optimizer, AssetCollectionOptimizerInterface $js_collection_optimizer) {
+  public function __construct(ConfigFactoryInterface $config_factory, CacheBackendInterface $render_cache, DateFormatterInterface $date_formatter, AssetCollectionOptimizerInterface $css_collection_optimizer, AssetCollectionOptimizerInterface $js_collection_optimizer, ThemeHandlerInterface $theme_handler) {
     parent::__construct($config_factory);
 
     $this->renderCache = $render_cache;
     $this->dateFormatter = $date_formatter;
     $this->cssCollectionOptimizer = $css_collection_optimizer;
     $this->jsCollectionOptimizer = $js_collection_optimizer;
+    $this->themeHandler = $theme_handler;
   }
 
   /**
@@ -74,7 +85,8 @@ class LibrarySettingsForm extends ConfigFormBase {
       $container->get('cache.render'),
       $container->get('date.formatter'),
       $container->get('asset.css.collection_optimizer'),
-      $container->get('asset.js.collection_optimizer')
+      $container->get('asset.js.collection_optimizer'),
+      $container->get('theme_handler')
     );
   }
 
@@ -100,7 +112,7 @@ class LibrarySettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('wxt_library.settings');
 
-    $themes = \Drupal::service('theme_handler')->listInfo();
+    $themes = $this->themeHandler->listInfo();
     $active_themes = [];
     foreach ($themes as $key => $theme) {
       if ($theme->status) {
@@ -206,7 +218,6 @@ class LibrarySettingsForm extends ConfigFormBase {
 
     return parent::buildForm($form, $form_state);
   }
-
 
   /**
    * {@inheritdoc}

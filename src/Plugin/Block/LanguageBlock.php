@@ -4,6 +4,7 @@ namespace Drupal\wxt_library\Plugin\Block;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -23,6 +24,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * Drupal\Core\Config\ConfigFactory definition.
+   *
+   * @var \Drupal\Core\Config\ConfigFactory
+   */
+  protected $configFactory;
 
   /**
    * The language manager.
@@ -52,8 +60,9 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
    * @param \Drupal\Core\Path\PathMatcherInterface $path_matcher
    *   The path matcher.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, LanguageManagerInterface $language_manager, PathMatcherInterface $path_matcher) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, LanguageManagerInterface $language_manager, PathMatcherInterface $path_matcher) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->configFactory = $config_factory;
     $this->languageManager = $language_manager;
     $this->pathMatcher = $path_matcher;
   }
@@ -66,6 +75,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('config.factory'),
       $container->get('language_manager'),
       $container->get('path.matcher')
     );
@@ -89,7 +99,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
     $type = $this->getDerivativeId();
     $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
     $language = $this->languageManager->getCurrentLanguage()->getId();
-    $theme_config = \Drupal::config('wxt_library.settings');
+    $theme_config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $theme_config->get('wxt.theme');
 
     // Don't show current language in toggle.
