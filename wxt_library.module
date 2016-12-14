@@ -9,8 +9,6 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 
-define('WXT_LIBRARY_MIN_PLUGIN_VERSION', '4.0.21');
-
 /**
  * Implements hook_help().
  */
