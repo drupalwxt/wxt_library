@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Primarily WxT related functionality.
+ * Contains wxt_library.module.
  */
 
 use Drupal\Component\Utility\Unicode;
