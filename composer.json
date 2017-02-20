@@ -3,29 +3,164 @@
     "description": "Registers WxT Bootstrap using native libraries.",
     "type": "drupal-module",
     "license": "GPL-2.0+",
-    "repositories":[
+    "repositories": [
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/wet-boew",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.23.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/wet-boew-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23"
+                }
+            }
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/theme-wet-boew",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/themes-cdn/archive/v4.0.23-theme-wet-boew.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/themes-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23-theme-wet-boew"
+                }
+            }
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/theme-base",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/themes-cdn/archive/v4.0.23-theme-base.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/themes-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23-theme-base"
+                }
+            }
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/theme-gc-intranet",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/themes-cdn/archive/v4.0.23-theme-gc-intranet.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/themes-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23-theme-gc-intranet"
+                }
+            }
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/theme-gcwu-fegc",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/themes-cdn/archive/v4.0.23-theme-gcwu-fegc.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/themes-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23-theme-gcwu-fegc"
+                }
+            }
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/theme-gcweb",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/themes-cdn/archive/v4.0.23-gcweb.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/themes-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23-gcweb"
+                }
+            }
+        },
+        {
+            "type"    : "package",
+            "package" : {
+                "name"    : "wet-boew/theme-ogpl",
+                "version" : "v4.0.23",
+                "type"    : "drupal-library",
+                "dist"    : {
+                    "url"  : "https://github.com/wet-boew/themes-cdn/archive/v4.0.23-theme-ogpl.tar.gz",
+                    "type" : "tar"
+                },
+                "source"  : {
+                    "url"       : "https://github.com/wet-boew/themes-cdn.git",
+                    "type"      : "git",
+                    "reference" : "v4.0.23-theme-ogpl"
+                }
+            }
         }
     ],
     "require": {
         "composer/installers": "^1.0.20",
         "cweagans/composer-patches": "^1.5.0",
-        "drupal/core": "8.*"
+        "drupal/core": "8.*",
+        "wet-boew/wet-boew": "4.0.23",
+        "wet-boew/theme-wet-boew": "4.0.23",
+        "wet-boew/theme-base": "4.0.23",
+        "wet-boew/theme-gc-intranet": "4.0.23",
+        "wet-boew/theme-gcwu-fegc": "4.0.23",
+        "wet-boew/theme-gcweb": "4.0.23",
+        "wet-boew/theme-ogpl": "4.0.23"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
         "installer-paths": {
             "html/core": [
-                "drupal/core"
+                "type:drupal/core"
+            ],
+            "html/libraries/{$name}" : [
+                "type:drupal-library"
+            ],
+            "html/modules/custom/{$name}": [
+                "drupal/wxt_library"
             ],
             "html/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
             "html/profiles/{$name}": [
                 "type:drupal-profile"
+            ],
+            "html/themes/custom/{$name}": [
+                "drupal/wxt_bootstrap"
             ],
             "html/themes/contrib/{$name}": [
                 "type:drupal-theme"
@@ -34,6 +169,7 @@
                 "type:drupal-drush"
             ]
         },
-        "patches": []
+        "enable-patching": true,
+        "patches": {}
     }
 }
