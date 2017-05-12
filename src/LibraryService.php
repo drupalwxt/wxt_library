@@ -2,6 +2,9 @@
 
 namespace Drupal\wxt_library;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class LibraryService {
 
   /**
@@ -15,10 +18,29 @@ class LibraryService {
   protected $libraryPath;
 
   /**
-   * When the service is created, set defaults.
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  public function __construct() {
-    $config = \Drupal::config('wxt_library.settings');
+  protected $configFactory;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('config.factory'));
+  }
+
+  /**
+   * Constructs a new NodePreviewForm.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+    $this->configFactory = $config_factory;
+
+    $config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $config->get('wxt.theme');
     $this->libraryPath = _wxt_library_get_path($wxt_active, TRUE);
 

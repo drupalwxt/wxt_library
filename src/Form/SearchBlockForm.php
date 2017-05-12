@@ -54,6 +54,8 @@ class SearchBlockForm extends FormBase {
    *   The config factory.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
+   * @param \Drupal\wxt_library\LibraryService $wxt_library_service_wxt
+   *   The LibraryService.
    */
   public function __construct(
     SearchPageRepositoryInterface $search_page_repository,

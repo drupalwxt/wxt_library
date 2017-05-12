@@ -51,6 +51,12 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Datetime\DateFormatter $date_formatter
+   *   The date formatter service.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack service.
+   * @param \Drupal\Core\Entity\EntityStorageInterface $node_storage
+   *   Entity storage for node entities.
    */
   public function __construct(
         array $configuration,

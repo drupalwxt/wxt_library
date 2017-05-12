@@ -35,6 +35,8 @@ class UserAccountBlock extends BlockBase implements ContainerFactoryPluginInterf
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Session\AccountProxy $current_user
+   *   The Account Proxy.
    */
   public function __construct(
         array $configuration,

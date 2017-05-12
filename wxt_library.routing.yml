@@ -4,7 +4,7 @@ wxt.admin_config_wxt:
     _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
     _title: 'WxT'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'administer site configuration'
 
 wxt_library.admin_config_wxt_library:
   path: '/admin/config/wxt/wxt_library'
@@ -19,4 +19,5 @@ wxt_library.service_wxt:
   defaults:
     _controller: '\Drupal\wxt_library\Controller\LibraryController::wxtInfo'
   requirements:
+    # WxT service information
     _access: 'TRUE'

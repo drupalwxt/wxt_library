@@ -58,6 +58,14 @@ function wxt_library_page_attachments(array &$page) {
     }
   }
 
+  // GCWeb messages theming.
+  if ($wxt_active == 'theme-gcweb') {
+    $route_name = \Drupal::service('current_route_match')->getRouteName();
+    if ($route_name == 'system.404') {
+      $page['#attached']['library'][] = 'wxt_library/' . $wxt_active . $min . '.messages';
+    }
+  }
+
   // WxT noscript handling.
   $library_discovery = \Drupal::service('library.discovery');
   if ($variant == 'minified') {
@@ -88,6 +96,7 @@ function wxt_library_page_attachments(array &$page) {
       }
     }
   }
+
 }
 
 /**
