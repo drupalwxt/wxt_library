@@ -170,6 +170,11 @@
             ]
         },
         "enable-patching": true,
-        "patches": {}
+        "patches": {
+            "wet-boew/wet-boew": {
+                "Enter wet-boew/wet-boew patch #2895190 description here":
+                "https://www.drupal.org/files/issues/issue_with_wb_data_ajax-2895190-2.patch"
+            }
+        }
     }
 }
