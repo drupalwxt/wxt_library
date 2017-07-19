@@ -267,3 +267,12 @@ function _wxt_library_get_libraries() {
 
   return $directories;
 }
+
+/**
+ * Implements hook_bootstrap_layouts_class_options_alter().
+ */
+function wxt_library_bootstrap_layouts_class_options_alter(&$classes, &$groups) {
+  // Add theme specific classes.
+  $groups['wxt_bootstrap'] = t('WxT');
+  $classes['wxt_bootstrap']['wb-eqht'] = t('Equal Height: @class', ['@class' => 'wb-eqht']);
+}
