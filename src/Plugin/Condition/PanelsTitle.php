@@ -12,7 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   id = "panels_title",
  *   label = @Translation("Panels Title"),
  *   context = {
- *     "node" = @ContextDefinition("entity:node", label = @Translation("Current Node")),
+ *     "node" = @ContextDefinition("entity:node", label = @Translation("Current Node"), required = FALSE),
  *   }
  * )
  */
@@ -60,7 +60,7 @@ class PanelsTitle extends ConditionPluginBase {
   public function evaluate() {
 
     $node = $this->getContextValue('node');
-    if ($node->__isset('panelizer')) {
+    if ( !empty($node) && $node->__isset('panelizer')) {
       $panelizer = $node->get('panelizer');
 
       $panelizer_values = $node->get('panelizer')->getValue();
