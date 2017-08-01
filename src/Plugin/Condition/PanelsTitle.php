@@ -60,7 +60,7 @@ class PanelsTitle extends ConditionPluginBase {
   public function evaluate() {
 
     $node = $this->getContextValue('node');
-    if ( !empty($node) && $node->__isset('panelizer')) {
+    if (!empty($node) && $node->__isset('panelizer')) {
       $panelizer = $node->get('panelizer');
 
       $panelizer_values = $node->get('panelizer')->getValue();
