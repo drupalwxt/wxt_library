@@ -6,31 +6,43 @@ assets.
 
 ## Installation
 
-There are two installation methods `standalone` + `distro`  to leverage the
-[WxT Bootstrap][wxt_bootstrap] theme in Drupal 8. The `standalone` install is
-provided as an additional method for those who do not wish to have the full
-weight of a distribution and its required dependencies.
-### StandAlone Requirements
+There are two possible installation methods to leverage the
+[WxT Library][wxt_library] module in Drupal 8:
 
-`Standalone` Install: [WxT Library][wxt_library] only requires the
-[Bootstrap][bootstrap] base theme and the [WxT Library][wxt_library] module
-at a minimum to function correctly.
+- *distribution (recommended)*
+- *standalone*
 
-You can easily retrieve these dependencies by running `composer install` which
-will simply retrieve the following:
+The standalone install is provided as an additional installation method for
+those who do not wish to have the full weight of a distribution and its
+required dependencies.
 
-- [Bootstrap][bootstrap] (8.x-3.0+)
-- [WxT Library][wxt_library] (8.x-1.x)
+### Distribution
 
-### Distribution Requirements
+All dependencies are included as part of the [Drupal WxT][drupal_wxt]
+distribution and come completely configured alongside with additional
+integrations and workflow improvements.
 
-`Distro` Install: All dependencies are included as part of the
-[Drupal WxT][drupal_wxt] distribution and come completely configured alongside
-with additional integrations.
+- [WxT][wxt] (8.x-1.x)
 
+### StandAlone
+
+WxT Library at a minimum requires the following dependencies:
+
+- [Bootstrap][bootstrap] (8.x-3.5+)
+- [WxT Library][wxt_library] (8.x-1.0+)
+- [WxT jQuery Framework assets][wet_boew]
+
+You can easily retrieve these dependencies via composer:
+
+```sh
+composer require drupal/wxt_library
+```
+
+<!-- Links Referenced -->
 
 [bootstrap]:      http://drupal.org/project/bootstrap
 [drupal_wxt]:     http://drupal.org/project/wxt
 [wet_boew]:       http://wet-boew.github.io
+[wxt]:            http://drupal.org/project/wxt
 [wxt_library]:    http://drupal.org/project/wxt_library
 [wxt_bootstrap]:  http://drupal.org/project/wxt_bootstrap
