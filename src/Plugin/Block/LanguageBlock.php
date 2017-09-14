@@ -3,6 +3,7 @@
 namespace Drupal\wxt_library\Plugin\Block;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -11,6 +12,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Routing\UrlGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,6 +49,20 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
   protected $pathMatcher;
 
   /**
+   * The URL generator.
+   *
+   * @var \Drupal\Core\Routing\UrlGeneratorInterface
+   */
+  protected $urlGenerator;
+
+  /**
+   * The alias manager.
+   *
+   * @var \Drupal\Core\Path\AliasManagerInterface
+   */
+  protected $aliasManager;
+
+  /**
    * Constructs an LanguageBlock object.
    *
    * @param array $configuration
@@ -61,12 +77,18 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The language manager.
    * @param \Drupal\Core\Path\PathMatcherInterface $path_matcher
    *   The path matcher.
+   * @param \Drupal\Core\Path\AliasManager $alias_manager
+   *   The alias manager.
+   * @param \Drupal\Core\Routing\UrlGeneratorInterface $url_generator
+   *   The URL generator.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, LanguageManagerInterface $language_manager, PathMatcherInterface $path_matcher) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, LanguageManagerInterface $language_manager, PathMatcherInterface $path_matcher, AliasManagerInterface $alias_manager, UrlGeneratorInterface $url_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->configFactory = $config_factory;
     $this->languageManager = $language_manager;
     $this->pathMatcher = $path_matcher;
+    $this->aliasManager = $alias_manager;
+    $this->urlGenerator = $url_generator;
   }
 
   /**
@@ -79,7 +101,9 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       $plugin_definition,
       $container->get('config.factory'),
       $container->get('language_manager'),
-      $container->get('path.matcher')
+      $container->get('path.matcher'),
+      $container->get('path.alias_manager'),
+      $container->get('url_generator')
     );
   }
 
@@ -95,9 +119,24 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
    * {@inheritdoc}
    */
   public function build() {
+    $current = $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE)->getGeneratedUrl();
+    $front = $this->aliasManager->getPathByAlias($current);
+    $frontAlias = $this->configFactory->get('system.site')->get('page.front');
+
     $config = $this->configuration;
     $build = [];
     $route_name = $this->pathMatcher->isFrontPage() ? '<front>' : '<current>';
+
+    $path_elements = explode('/', trim($front, '/'));
+    foreach ($this->languageManager->getLanguages() as $language) {
+      if (!empty($path_elements[0]) && $path_elements[0] == $language->getId()) {
+        array_shift($path_elements);
+        if (implode($path_elements) == trim($frontAlias, '/')) {
+          $route_name = '<front>';
+        }
+      }
+    }
+
     $type = $this->getDerivativeId();
     $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
     $language = $this->languageManager->getCurrentLanguage()->getId();
