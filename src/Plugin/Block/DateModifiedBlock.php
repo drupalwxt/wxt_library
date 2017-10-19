@@ -131,7 +131,8 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
     $time = REQUEST_TIME;
 
     // Node context.
-    if ($node = $this->requestStack->getCurrentRequest()->get('node')) {
+    $node = $this->requestStack->getCurrentRequest()->get('node');
+    if (is_object($node)) {
       $time = $node->getChangedTime();
     }
 
