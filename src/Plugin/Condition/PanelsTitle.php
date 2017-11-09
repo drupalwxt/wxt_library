@@ -88,11 +88,25 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    */
   public function evaluate() {
 
-    // Page Manager support.
+    // Page Manager support for Panels.
     $request = $this->requestStack->getCurrentRequest();
     $page_manager = $request->attributes->get('page_manager_page');
-    if (!empty($page_manager) && $page_manager->getEntityTypeId() == 'page') {
-      return FALSE;
+    if (!empty($page_manager) && $page_manager->access('view')) {
+      $variants = $page_manager->getVariants();
+      foreach ($variants as $variant) {
+        if ($variant->access('view')) {
+          /** @var \Drupal\ctools\Plugin\BlockVariantInterface $variant_plugin */
+          $variant_plugin = $variant->getVariantPlugin();
+          foreach ($variant_plugin->getRegionAssignments() as $blocks) {
+            /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
+            foreach ($blocks as $block) {
+              if ($block->getPluginId() == 'page_title_block') {
+                return FALSE;
+              }
+            }
+          }
+        }
+      }
     }
 
     // Panelizer support for Node.
