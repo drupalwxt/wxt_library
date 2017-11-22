@@ -77,7 +77,17 @@ class SearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
    * {@inheritdoc}
    */
   public function build() {
-    return $this->formBuilder->getForm('Drupal\wxt_library\Form\SearchBlockForm');
+    // Add search block but only if search functionality exists.
+    if (\Drupal::moduleHandler()->moduleExists('search_api')) {
+      return $this->formBuilder->getForm('Drupal\wxt_library\Form\SearchApiBlockForm');
+    }
+    elseif (\Drupal::moduleHandler()->moduleExists('search')) {
+      return $this->formBuilder->getForm('Drupal\wxt_library\Form\SearchBlockForm');
+    }
+    else {
+      return [];
+    }
+
   }
 
 }
