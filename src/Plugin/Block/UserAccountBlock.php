@@ -83,6 +83,10 @@ class UserAccountBlock extends BlockBase implements ContainerFactoryPluginInterf
     }
 
     $build['user_account_block']['#markup'] .= '</div></section>';
+
+    // Ensure the block is cached per-user.
+    $build['user_account_block']['#cache']['contexts'] = ['user'];
+
     return $build;
   }
 
