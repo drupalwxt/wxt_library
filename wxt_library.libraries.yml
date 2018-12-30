@@ -4,9 +4,9 @@ wet-boew:
     name: MIT
     gpl-compatible: true
   js:
-    /libraries/wet-boew/js/ie8-wet-boew.min.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false }
-    /libraries/wet-boew/js/wet-boew.min.js: { preprocess: false, browsers: { IE: 'gte IE 9', '!IE': true }, minified: false }
-    /libraries/wet-boew/js/ie8-wet-boew2.min.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false }
+    /libraries/wet-boew/js/ie8-wet-boew.min.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1 }
+    /libraries/wet-boew/js/wet-boew.min.js: { preprocess: false, browsers: { IE: 'gte IE 9', '!IE': true }, minified: false, weight: -1 }
+    /libraries/wet-boew/js/ie8-wet-boew2.min.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1 }
   dependencies:
     - core/jquery
 
@@ -64,6 +64,8 @@ theme-gcweb:
     theme:
       /libraries/theme-gcweb/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
       /libraries/theme-gcweb/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
+  js:
+    /libraries/theme-gcweb/js/theme.min.js: { preprocess: false, minified: false }
   dependencies:
     - core/jquery
 
@@ -121,9 +123,9 @@ wet-boew-dev:
     name: MIT
     gpl-compatible: true
   js:
-    /libraries/wet-boew/js/ie8-wet-boew.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false }
-    /libraries/wet-boew/js/wet-boew.js: { preprocess: false, browsers: { IE: 'gte IE 9', '!IE': true }, minified: false }
-    /libraries/wet-boew/js/ie8-wet-boew2.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false }
+    /libraries/wet-boew/js/ie8-wet-boew.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1}
+    /libraries/wet-boew/js/wet-boew.js: { preprocess: false, browsers: { IE: 'gte IE 9', '!IE': true }, minified: false, weight: -1 }
+    /libraries/wet-boew/js/ie8-wet-boew2.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1 }
   dependencies:
     - core/jquery
 
@@ -181,6 +183,8 @@ theme-gcweb-dev:
     theme:
       /libraries/theme-gcweb/css/theme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
       /libraries/theme-gcweb/css/ie8-theme.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
+  js:
+    /libraries/theme-gcweb/js/theme.js: { preprocess: false, minified: false }
   dependencies:
     - core/jquery
 
