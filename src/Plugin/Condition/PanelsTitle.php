@@ -121,6 +121,9 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
       $panelizer = \Drupal::service('panelizer');
 
       $displays = $panelizer->getDefaultPanelsDisplays($node->getEntityTypeId(), $node->bundle(), $view_mode);
+      if (!array_key_exists('default', $displays)) {
+        return FALSE;
+      }
       $display = $displays['default'];
 
       $display = $panelizer->getEntityViewDisplay($node->getEntityTypeId(), $node->bundle(), $view_mode);
@@ -146,6 +149,9 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
       $panelizer = \Drupal::service('panelizer');
 
       $displays = $panelizer->getDefaultPanelsDisplays($taxonomy_term->getEntityTypeId(), $taxonomy_term->bundle(), $view_mode);
+      if (!array_key_exists('default', $displays)) {
+        return FALSE;
+      }
       $display = $displays['default'];
 
       $display = $panelizer->getEntityViewDisplay($taxonomy_term->getEntityTypeId(), $taxonomy_term->bundle(), $view_mode);
