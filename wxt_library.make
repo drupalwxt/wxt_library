@@ -6,7 +6,7 @@ api = 2
 ; Libraries for the Web Experience Toolkit jQuery Framework
 
 libraries[wet-boew][download][type] = get
-libraries[wet-boew][download][url] = https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.29.tar.gz
+libraries[wet-boew][download][url] = https://github.com/drupalwxt/themes-dist/releases/download/v4.0.30-gcweb/wet-boew.tar.gz
 libraries[wet-boew][destination] = ../../libraries
 
 libraries[theme-wet-boew][download][type] = get
@@ -26,7 +26,7 @@ libraries[theme-gcwu-fegc][download][url] = https://github.com/wet-boew/themes-c
 libraries[theme-gcwu-fegc][destination] = ../../libraries
 
 libraries[theme-gcweb][download][type] = get
-libraries[theme-gcweb][download][url] = https://github.com/wet-boew/themes-cdn/archive/v4.0.29-gcweb.tar.gz
+libraries[theme-gcweb][download][url] = https://github.com/drupalwxt/themes-dist/releases/download/v4.0.30-gcweb/gcweb.tar.gz
 libraries[theme-gcweb][destination] = ../../libraries
 
 libraries[theme-ogpl][download][type] = get
