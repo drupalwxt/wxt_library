@@ -69,6 +69,20 @@ theme-gcweb:
   dependencies:
     - core/jquery
 
+theme-gcweb-legacy:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gcweb-legacy/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
+      /libraries/theme-gcweb-legacy/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
+  js:
+    /libraries/theme-gcweb-legacy/js/theme.min.js: { preprocess: false, minified: false }
+  dependencies:
+    - core/jquery
+
 theme-gcwu-fegc:
   remote: http://wet-boew.github.io
   license:
@@ -114,6 +128,30 @@ theme-gcweb.splash:
     theme:
       /libraries/theme-gcweb/css/theme-srv.min.css: { minified: true }
       /libraries/theme-gcweb/css/ie8-theme-srv.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
+  dependencies:
+    - core/jquery
+
+theme-gcweb-library.messages:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gcweb-library/css/messages.min.css: { minified: true }
+      /libraries/theme-gcweb-library/css/ie8-messages.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
+  dependencies:
+    - core/jquery
+
+theme-gcweb-library.splash:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gcweb-library/css/theme-srv.min.css: { minified: true }
+      /libraries/theme-gcweb-library/css/ie8-theme-srv.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -188,6 +226,20 @@ theme-gcweb-dev:
   dependencies:
     - core/jquery
 
+theme-gcweb-legacy-dev:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gcweb-legacy/css/theme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
+      /libraries/theme-gcweb-legacy/css/ie8-theme.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
+  js:
+    /libraries/theme-gcweb-legacy/js/theme.js: { preprocess: false, minified: false }
+  dependencies:
+    - core/jquery
+
 theme-gcwu-fegc-dev:
   remote: http://wet-boew.github.io
   license:
@@ -233,5 +285,29 @@ theme-gcweb-dev.splash:
     theme:
       /libraries/theme-gcweb/css/theme-srv.css: { }
       /libraries/theme-gcweb/css/ie8-theme-srv.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
+  dependencies:
+    - core/jquery
+
+theme-gcweb-legacy-dev.messages:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gcweb-legacy/css/messages.css: { }
+      /libraries/theme-gcweb-legacy/css/ie8-messages.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
+  dependencies:
+    - core/jquery
+
+theme-gcweb-legacy-dev.splash:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gcweb-legacy/css/theme-srv.css: { }
+      /libraries/theme-gcweb-legacy/css/ie8-theme-srv.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery

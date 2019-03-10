@@ -104,7 +104,7 @@ class SearchApiBlockForm extends FormBase {
       '#id' => 'wb-srch-sub',
     ];
 
-    if ($wxt_active == 'gcweb') {
+    if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
       $form['submit']['#value'] = '';
       $form['keys']['#placeholder'] = $this->t('Search website');
       $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');

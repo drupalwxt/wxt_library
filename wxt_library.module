@@ -59,7 +59,7 @@ function wxt_library_page_attachments(array &$page) {
   }
 
   // GCWeb messages theming.
-  if ($wxt_active == 'theme-gcweb') {
+  if ($wxt_active == 'theme-gcweb' || $wxt_active == 'theme-gcweb-legacy') {
     $route_name = \Drupal::service('current_route_match')->getRouteName();
     if ($route_name == 'system.404') {
       $page['#attached']['library'][] = 'wxt_library/' . $wxt_active . $min . '.messages';
@@ -173,6 +173,7 @@ function _wxt_library_options() {
     'theme-gcwu-fegc' => t('Internet (Government of Canada)'),
     'theme-gc-intranet' => t('Intranet (Government of Canada)'),
     'theme-gcweb' => t('Canada.ca (Government of Canada)'),
+    'theme-gcweb-legacy' => t('Canada.ca Legacy (Government of Canada)'),
   ];
 }
 
