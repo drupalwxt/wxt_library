@@ -138,34 +138,35 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
     }
 
     $type = $this->getDerivativeId();
-    $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
     $language = $this->languageManager->getCurrentLanguage()->getId();
     $theme_config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $theme_config->get('wxt.theme');
+    $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
 
-    // Don't show current language in toggle.
-    $toggle = FALSE;
-    foreach ($config['language_toggle'] as $enabled) {
-      if ($enabled === $wxt_active) {
-        $toggle = TRUE;
-      }
-    }
-    if (!$toggle) {
-      unset($links->links[$language]);
-    }
-    $wxt_active = str_replace('-', '_', $wxt_active);
-    $wxt_active = str_replace('theme_', '', $wxt_active);
     if (isset($links->links)) {
-      $build = [
-        '#theme' => 'links__language_block__' . $wxt_active,
-        '#links' => $links->links,
-        '#attributes' => [
-          'class' => [
-            "language-switcher-{$links->method_id}",
+      // Don't show all defined languages in language switcher.
+      $toggle = FALSE;
+      foreach ($config['language_toggle'] as $enabled) {
+        if ($enabled === $wxt_active) {
+          $toggle = TRUE;
+        }
+      }
+      if (!$toggle) {
+        unset($links->links[$language]);
+      }
+      $wxt_active = str_replace('-', '_', $wxt_active);
+      $wxt_active = str_replace('theme_', '', $wxt_active);
+
+        $build = [
+          '#theme' => 'links__language_block__' . $wxt_active,
+          '#links' => $links->links,
+          '#attributes' => [
+            'class' => [
+              "language-switcher-{$links->method_id}",
+            ],
           ],
-        ],
-        '#set_active_class' => TRUE,
-      ];
+          '#set_active_class' => TRUE,
+        ];
     }
     return $build;
   }
