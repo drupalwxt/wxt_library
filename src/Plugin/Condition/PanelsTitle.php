@@ -109,6 +109,22 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
       }
     }
 
+    // Layout support for Node.
+    $node = $this->getContextValue('node');
+    if (!empty($node) && $node->__isset('layout_builder__layout')) {
+      $layout = $node->get('layout_builder__layout');
+      $layout_values = $node->get('layout_builder__layout')->getValue();
+      $section = array_pop($layout_values);
+      foreach ($section['section']->getComponents() as $component) {
+        $plugin = $component->getPlugin();
+        $configuration = $plugin->getConfiguration();
+        if ($configuration['id'] == 'field_block:node:page:title' ||
+            $configuration['id'] == 'page_title_block') {
+          return FALSE;
+        }
+      }
+    }
+
     // Panelizer support for Node.
     $node = $this->getContextValue('node');
     if (!empty($node) && $node->__isset('panelizer')) {
@@ -132,6 +148,22 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
 
       if (isset($content['title'])) {
         return FALSE;
+      }
+    }
+
+    // Layout support for Taxonomy Term.
+    $taxonomy_term = $this->getContextValue('taxonomy_term');
+    if (!empty($taxonomy_term) && $taxonomy_term->__isset('layout_builder__layout')) {
+      $layout = $taxonomy_term->get('layout_builder__layout');
+      $layout_values = $taxonomy_term->get('layout_builder__layout')->getValue();
+      $section = array_pop($layout_values);
+      foreach ($section['section']->getComponents() as $component) {
+        $plugin = $component->getPlugin();
+        $configuration = $plugin->getConfiguration();
+        if ($configuration['id'] == 'field_block:node:page:title' ||
+            $configuration['id'] == 'page_title_block') {
+          return FALSE;
+        }
       }
     }
 
