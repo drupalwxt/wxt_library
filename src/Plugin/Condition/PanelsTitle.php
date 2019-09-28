@@ -3,17 +3,19 @@
 namespace Drupal\wxt_library\Plugin\Condition;
 
 use Drupal\Core\Condition\ConditionPluginBase;
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\layout_builder_st\Entity\LayoutBuilderEntityViewDisplay;
 
 /**
- * Provides a 'Panels Title' condition.
+ * Provides a 'Layout Builder Title' condition.
  *
  * @Condition(
  *   id = "panels_title",
- *   label = @Translation("Panels Title"),
+ *   label = @Translation("Layout Builder Title"),
  *   context = {
  *     "node" = @ContextDefinition("entity:node", label = @Translation("Current Node"), required = FALSE),
  *     "taxonomy_term" = @ContextDefinition("entity:taxonomy_term", label = @Translation("Current Taxonomy Term"), required = FALSE),
@@ -30,10 +32,19 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
   protected $requestStack;
 
   /**
-   * Constructs a PanelsTitle condition plugin.
+   * The entity display repository.
+   *
+   * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface
+   */
+  protected $entityDisplayRepository;
+
+  /**
+   * Constructs a LayoutBuilderTitle condition plugin.
    *
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack.
+   * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display_repository
+   *   The entity display repository.
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
    * @param string $plugin_id
@@ -41,9 +52,10 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    * @param array $plugin_definition
    *   The plugin implementation definition.
    */
-  public function __construct(RequestStack $request_stack, array $configuration, $plugin_id, array $plugin_definition) {
+  public function __construct(RequestStack $request_stack, EntityDisplayRepositoryInterface $entity_display_repository, array $configuration, $plugin_id, array $plugin_definition) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->requestStack = $request_stack;
+    $this->entityDisplayRepository = $entity_display_repository;
   }
 
   /**
@@ -52,6 +64,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
       $container->get('request_stack'),
+      $container->get('entity_display.repository'),
       $configuration,
       $plugin_id,
       $plugin_definition
@@ -109,19 +122,35 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
       }
     }
 
-    // Layout support for Node.
-    $node = $this->getContextValue('node');
-    if (!empty($node) && $node->__isset('layout_builder__layout')) {
-      $layout = $node->get('layout_builder__layout');
-      $layout_values = $node->get('layout_builder__layout')->getValue();
-      $section = array_pop($layout_values);
-      if (!empty($section['section'])) {
-        foreach ($section['section']->getComponents() as $component) {
-          $plugin = $component->getPlugin();
-          $configuration = $plugin->getConfiguration();
-          if ($configuration['id'] == 'field_block:node:page:title' ||
-              $configuration['id'] == 'page_title_block') {
-            return FALSE;
+    // Layout support for Node / Taxonomy Term.
+    $supported_entities = array('node', 'taxonomy_term');
+    foreach ($supported_entities as $supported_entity) {
+      $entity = $this->getContextValue($supported_entity);
+      if (!empty($entity) && $entity->__isset('layout_builder__layout')) {
+        // Layout Builder custom display for individual entity.
+        $layout = $entity->get('layout_builder__layout');
+        $layout_values = $entity->get('layout_builder__layout')->getValue();
+        $section = array_pop($layout_values);
+        if (!empty($section['section'])) {
+          foreach ($section['section']->getComponents() as $component) {
+            $plugin = $component->getPlugin();
+            $configuration = $plugin->getConfiguration();
+            if ($configuration['id'] == 'field_block:node:page:title' ||
+                $configuration['id'] == 'page_title_block') {
+              return FALSE;
+            }
+          }
+        }
+        else {
+          // Layout Builder default display for supported entities.
+          $view_modes = $this->entityDisplayRepository->getViewModeOptionsByBundle($entity->getEntityTypeId(), $entity->getType());
+          foreach (array_keys($view_modes) as $view_mode) {
+            $display = lightning_layout_entity_get_display($entity->getEntityTypeId(), $entity->getType(), $view_mode);
+            if (($display instanceof LayoutBuilderEntityViewDisplay)) {
+              if ($display->getComponent('title')) {
+                return FALSE;
+              }
+            }
           }
         }
       }
@@ -150,24 +179,6 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
 
       if (isset($content['title'])) {
         return FALSE;
-      }
-    }
-
-    // Layout support for Taxonomy Term.
-    $taxonomy_term = $this->getContextValue('taxonomy_term');
-    if (!empty($taxonomy_term) && $taxonomy_term->__isset('layout_builder__layout')) {
-      $layout = $taxonomy_term->get('layout_builder__layout');
-      $layout_values = $taxonomy_term->get('layout_builder__layout')->getValue();
-      $section = array_pop($layout_values);
-      if (!empty($section['section'])) {
-        foreach ($section['section']->getComponents() as $component) {
-          $plugin = $component->getPlugin();
-          $configuration = $plugin->getConfiguration();
-          if ($configuration['id'] == 'field_block:node:page:title' ||
-              $configuration['id'] == 'page_title_block') {
-            return FALSE;
-          }
-        }
       }
     }
 
