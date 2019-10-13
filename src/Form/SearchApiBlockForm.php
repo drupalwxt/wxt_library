@@ -98,14 +98,21 @@ class SearchApiBlockForm extends FormBase {
       ],
     ];
 
-    $form['submit'] = [
+    $form['submit_container'] = array(
+      '#type' => 'container',
+      '#attributes' => array(
+        'class' => ['submit'],
+      )
+    );
+
+    $form['submit_container']['submit'] = [
       '#type' => 'submit',
       '#value' => $submit_title,
       '#id' => 'wb-srch-sub',
     ];
 
     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
-      $form['submit']['#value'] = '';
+      $form['submit_container']['submit']['#value'] = '';
       $form['keys']['#placeholder'] = $this->t('Search website');
       $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
       if (!empty($wxt_gcweb_search)) {

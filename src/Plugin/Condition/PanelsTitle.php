@@ -123,12 +123,11 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
     }
 
     // Layout support for Node / Taxonomy Term.
-    $supported_entities = array('node', 'taxonomy_term');
+    $supported_entities = ['node', 'taxonomy_term'];
     foreach ($supported_entities as $supported_entity) {
       $entity = $this->getContextValue($supported_entity);
       if (!empty($entity) && $entity->__isset('layout_builder__layout')) {
         // Layout Builder custom display for individual entity.
-        $layout = $entity->get('layout_builder__layout');
         $layout_values = $entity->get('layout_builder__layout')->getValue();
         $section = array_pop($layout_values);
         if (!empty($section['section'])) {

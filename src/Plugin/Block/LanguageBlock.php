@@ -157,16 +157,16 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       $wxt_active = str_replace('-', '_', $wxt_active);
       $wxt_active = str_replace('theme_', '', $wxt_active);
 
-        $build = [
-          '#theme' => 'links__language_block__' . $wxt_active,
-          '#links' => $links->links,
-          '#attributes' => [
-            'class' => [
-              "language-switcher-{$links->method_id}",
-            ],
+      $build = [
+        '#theme' => 'links__language_block__' . $wxt_active,
+        '#links' => $links->links,
+        '#attributes' => [
+          'class' => [
+            "language-switcher-{$links->method_id}",
           ],
-          '#set_active_class' => TRUE,
-        ];
+        ],
+        '#set_active_class' => TRUE,
+      ];
     }
     return $build;
   }
