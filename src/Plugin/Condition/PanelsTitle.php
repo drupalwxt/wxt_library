@@ -110,11 +110,13 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
         if ($variant->access('view')) {
           /** @var \Drupal\ctools\Plugin\BlockVariantInterface $variant_plugin */
           $variant_plugin = $variant->getVariantPlugin();
-          foreach ($variant_plugin->getRegionAssignments() as $blocks) {
-            /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
-            foreach ($blocks as $block) {
-              if ($block->getPluginId() == 'page_title_block') {
-                return FALSE;
+          if ($variant_plugin->pluginId != 'http_status_code') {
+            foreach ($variant_plugin->getRegionAssignments() as $blocks) {
+              /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
+              foreach ($blocks as $block) {
+                if ($block->getPluginId() == 'page_title_block') {
+                  return FALSE;
+                }
               }
             }
           }
