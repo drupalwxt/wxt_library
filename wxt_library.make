@@ -6,11 +6,11 @@ api = 2
 ; Libraries for the Web Experience Toolkit jQuery Framework
 
 libraries[wet-boew][download][type] = get
-libraries[wet-boew][download][url] = https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.30.tar.gz
+libraries[wet-boew][download][url] = https://github.com/wet-boew/wet-boew-cdn/archive/v4.0.32.tar.gz
 libraries[wet-boew][destination] = ../../libraries
 
 libraries[theme-wet-boew][download][type] = get
-libraries[theme-wet-boew][download][url] = https://github.com/wet-boew/themes-cdn/archive/v4.0.29-theme-wet-boew.tar.gz
+libraries[theme-wet-boew][download][url] = https://github.com/wet-boew/themes-cdn/archive/v4.0.32-theme-wet-boew.tar.gz
 libraries[theme-wet-boew][destination] = ../../libraries
 
 libraries[theme-base][download][type] = get
@@ -30,7 +30,7 @@ libraries[theme-gcweb-legacy][download][url] = https://github.com/wet-boew/theme
 libraries[theme-gcweb-legacy][destination] = ../../libraries
 
 libraries[theme-gcweb][download][type] = get
-libraries[theme-gcweb][download][url] = https://github.com/wet-boew/themes-cdn/archive/v5.0.1-gcweb.tar.gz
+libraries[theme-gcweb][download][url] = https://github.com/wet-boew/themes-cdn/archive/v6.0-gcweb.tar.gz
 libraries[theme-gcweb][destination] = ../../libraries
 
 libraries[theme-ogpl][download][type] = get
