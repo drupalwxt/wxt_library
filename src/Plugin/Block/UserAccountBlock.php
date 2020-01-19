@@ -77,9 +77,9 @@ class UserAccountBlock extends BlockBase implements ContainerFactoryPluginInterf
       $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign in'), Url::fromRoute('user.login', [], ['attributes' => ['class' => 'btn btn-primary']]))->toString() . "\n";
     }
     else {
-      $build['user_account_block']['#markup'] .= '<p class="btn">' . $this->t('Signed in as') . '<span class="wb-so-uname">' . ' ' . $account_name . '</span></p>';
-      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Account settings'), Url::fromRoute('user.page', [], ['attributes' => ['class' => 'btn btn-default']]))->toString() . "\n";
-      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign out'), Url::fromRoute('user.logout', [], ['attributes' => ['class' => 'btn btn-primary']]))->toString() . "\n";
+      $build['user_account_block']['#markup'] .= '<p class="mrgn-rght-sm display-inline">' . $this->t('Signed in as') . '<span class="wb-so-uname">' . ' ' . $account_name . '</span></p>';
+      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Account settings'), Url::fromRoute('user.page', [], ['attributes' => ['class' => 'btn btn-default', 'role' => 'button']]))->toString() . "\n";
+      $build['user_account_block']['#markup'] .= Link::fromTextAndUrl($this->t('Sign out'), Url::fromRoute('user.logout', [], ['attributes' => ['class' => 'btn btn-primary', 'role' => 'button']]))->toString() . "\n";
     }
 
     $build['user_account_block']['#markup'] .= '</div></section>';
