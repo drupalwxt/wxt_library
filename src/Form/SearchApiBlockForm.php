@@ -98,12 +98,12 @@ class SearchApiBlockForm extends FormBase {
       ],
     ];
 
-    $form['submit_container'] = array(
+    $form['submit_container'] = [
       '#type' => 'container',
-      '#attributes' => array(
+      '#attributes' => [
         'class' => ['submit'],
-      )
-    );
+      ],
+    ];
 
     $form['submit_container']['submit'] = [
       '#type' => 'submit',

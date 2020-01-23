@@ -141,7 +141,7 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
       $formatted_date = 'Y-m-d';
     }
     else {
-      $formatted_date = DateFormat::load($format)->getPattern();;
+      $formatted_date = DateFormat::load($format)->getPattern();
     }
     $date = $this->dateFormatter->format($time, 'custom', $formatted_date);
 
