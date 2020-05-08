@@ -225,7 +225,7 @@ function _wxt_library_get_libraries() {
   // Similar to 'modules' and 'themes' directories inside an installation
   // profile, installation profiles may want to place libraries into a
   // 'libraries' directory.
-  if ($profile = drupal_get_profile()) {
+  if ($profile = \Drupal::installProfile()) {
     $profile = drupal_get_path('profile', $profile);
   }
   else {
