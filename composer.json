@@ -36,9 +36,6 @@
             "html/libraries/{$name}" : [
                 "type:drupal-library"
             ],
-            "html/modules/custom/{$name}": [
-                "drupal/wxt_library"
-            ],
             "html/modules/contrib/{$name}": [
                 "type:drupal-module"
             ],
