@@ -8,7 +8,6 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Installer\InstallerKernel;
-use Drupal\Component\Utility\Unicode;
 
 /**
  * Implements hook_help().
@@ -129,11 +128,12 @@ function _wxt_library_check_url() {
   // Convert path to lowercase. This allows comparison of the same path
   // with different case. Ex: /Page, /page, /PAGE.
   $config = \Drupal::config('wxt_library.settings');
-  $pages = Unicode::strtolower(_wxt_library_array_to_string($config->get('url.pages')));
+  $pages = mb_strtolower(_wxt_library_array_to_string($config->get('url.pages')));
+
 
   // Compare the lowercase path alias (if any) and internal path.
   $path = Url::fromRoute('<current>')->toString();
-  $path_alias = Unicode::strtolower(\Drupal::service('path.alias_storage')->lookupPathAlias($path, 'en'));
+  $path_alias = mb_strtolower(\Drupal::service('path.alias_storage')->lookupPathAlias($path, 'en'));
   $page_match = \Drupal::service('path.matcher')->matchPath($path_alias, $pages);
   if ($path_alias != $path) {
     $page_match = $page_match || \Drupal::service('path.matcher')->matchPath($path, $pages);
