@@ -42,9 +42,6 @@
             "html/profiles/{$name}": [
                 "type:drupal-profile"
             ],
-            "html/themes/custom/{$name}": [
-                "drupal/wxt_bootstrap"
-            ],
             "html/themes/contrib/{$name}": [
                 "type:drupal-theme"
             ],
