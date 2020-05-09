@@ -130,7 +130,6 @@ function _wxt_library_check_url() {
   $config = \Drupal::config('wxt_library.settings');
   $pages = mb_strtolower(_wxt_library_array_to_string($config->get('url.pages')));
 
-
   // Compare the lowercase path alias (if any) and internal path.
   $path = Url::fromRoute('<current>')->toString();
   $path_alias = mb_strtolower(\Drupal::service('path.alias_storage')->lookupPathAlias($path, 'en'));
