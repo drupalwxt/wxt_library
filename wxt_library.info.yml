@@ -8,7 +8,6 @@ configure: wxt_library.admin
 # Required modules
 dependencies:
   - drupal:language
-  - drupal:search
 
 # Required libraries
 libraries:
