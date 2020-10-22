@@ -2,6 +2,7 @@
 
 namespace Drupal\wxt_library\Plugin\Block;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Datetime\Entity\DateFormat;
@@ -43,6 +44,13 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
   protected $dateFormatter;
 
   /**
+   * The date time to collect tokens.
+   *
+   * @var \Drupal\Component\Datetime\TimeInterface
+   */
+  protected $dateTime;
+
+  /**
    * Construct.
    *
    * @param array $configuration
@@ -57,6 +65,8 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
    *   The request stack service.
    * @param \Drupal\Core\Entity\EntityStorageInterface $node_storage
    *   Entity storage for node entities.
+   * @param \Drupal\Component\Datetime\TimeInterface $date_time
+   *   The date time service.
    */
   public function __construct(
         array $configuration,
@@ -64,12 +74,14 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
         $plugin_definition,
         DateFormatter $date_formatter,
         RequestStack $request_stack,
-        EntityStorageInterface $node_storage
+        EntityStorageInterface $node_storage,
+        TimeInterface $date_time
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->dateFormatter = $date_formatter;
     $this->requestStack = $request_stack;
     $this->nodeStorage = $node_storage;
+    $this->dateTime = $date_time;
   }
 
   /**
@@ -82,7 +94,8 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
       $plugin_definition,
       $container->get('date.formatter'),
       $container->get('request_stack'),
-      $container->get('entity_type.manager')->getStorage('node')
+      $container->get('entity_type.manager')->getStorage('node'),
+      $container->get('datetime.time')
     );
   }
 
@@ -128,7 +141,7 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
    */
   public function build() {
     $format = $this->configuration['date_modified'];
-    $time = REQUEST_TIME;
+    $time = $this->dateTime->getRequestTime();
 
     // Node context.
     $node = $this->requestStack->getCurrentRequest()->get('node');

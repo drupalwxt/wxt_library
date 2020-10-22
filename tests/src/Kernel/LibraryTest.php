@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\wxt_library\Kernel;
 
-use Drupal\config\Tests\SchemaCheckTestTrait;
+use Drupal\Tests\SchemaCheckTestTrait;
 use Drupal\KernelTests\KernelTestBase;
 
 /**

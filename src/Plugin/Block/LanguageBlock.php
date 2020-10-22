@@ -3,7 +3,6 @@
 namespace Drupal\wxt_library\Plugin\Block;
 
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -13,6 +12,7 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\UrlGeneratorInterface;
+use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -58,7 +58,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * The alias manager.
    *
-   * @var \Drupal\Core\Path\AliasManagerInterface
+   * @var \Drupal\path_alias\AliasManagerInterface
    */
   protected $aliasManager;
 
@@ -77,8 +77,8 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The language manager.
    * @param \Drupal\Core\Path\PathMatcherInterface $path_matcher
    *   The path matcher.
-   * @param \Drupal\Core\Path\AliasManager $alias_manager
-   *   The alias manager.
+   * @param \Drupal\path_alias\AliasManagerInterface $alias_manager
+   *   The alias manager service.
    * @param \Drupal\Core\Routing\UrlGeneratorInterface $url_generator
    *   The URL generator.
    */
