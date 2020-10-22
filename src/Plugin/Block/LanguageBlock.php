@@ -102,7 +102,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       $container->get('config.factory'),
       $container->get('language_manager'),
       $container->get('path.matcher'),
-      $container->get('path.alias_manager'),
+      $container->get('path_alias.manager'),
       $container->get('url_generator')
     );
   }
