@@ -116,7 +116,9 @@ class SearchApiBlockForm extends FormBase {
       $form['keys']['#placeholder'] = $this->t('Search website');
       $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
       if (!empty($wxt_gcweb_search)) {
-        $form['#action'] = $this->t('https://www.canada.ca/en/sr/srb.html');
+        $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+        $form['#action'] = 'https://www.canada.ca/' . $lang . '/sr/srb.html#wb_land';
         $form['#method'] = 'get';
 
         $form['keys']['#placeholder'] = $this->t('Search Canada.ca');
