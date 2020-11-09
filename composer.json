@@ -16,7 +16,8 @@
     "require": {
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.0",
-        "drupal/core": "8.*",
+        "oomphinc/composer-installers-extender": "^1.1 || ^2",
+        "drupal/core": "8.* || 9.*",
         "wet-boew/wet-boew": "4.0.38",
         "wet-boew/theme-wet-boew": "4.0.38",
         "wet-boew/theme-base": "4.0.27",
