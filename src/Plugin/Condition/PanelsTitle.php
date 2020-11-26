@@ -16,7 +16,7 @@ use Drupal\layout_builder_st\Entity\LayoutBuilderEntityViewDisplay;
  * @Condition(
  *   id = "panels_title",
  *   label = @Translation("Layout Builder Title"),
- *   context = {
+ *   context_definitions = {
  *     "node" = @ContextDefinition("entity:node", label = @Translation("Current Node"), required = FALSE),
  *     "taxonomy_term" = @ContextDefinition("entity:taxonomy_term", label = @Translation("Current Taxonomy Term"), required = FALSE),
  *   }
