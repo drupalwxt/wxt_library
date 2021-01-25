@@ -75,11 +75,12 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['enabled'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Do not display on panelized page(s)'),
-      '#default_value' => $this->configuration['enabled'],
-      '#description' => $this->t('Disables the display on panelized page(s).'),
+    $form['is_panelized'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Page is panelized with a title:'),
+      '#options' => ['enabled' => $this->t('Enabled')],
+      '#default_value' => $this->configuration['is_panelized'],
+      '#description' => $this->t('Returns TRUE if the page being viewed is a panelized page.'),
     ];
 
     return parent::buildConfigurationForm($form, $form_state);
@@ -89,7 +90,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $this->configuration['enabled'] = $form_state->getValue('enabled');
+    $this->configuration['is_panelized'] = array_filter($form_state->getValue('is_panelized'));
     parent::submitConfigurationForm($form, $form_state);
   }
 
@@ -100,23 +101,24 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    *   TRUE if the condition has been met, FALSE otherwise.
    */
   public function evaluate() {
+    if ((empty($this->configuration['is_panelized']) || (isset($this->configuration['is_panelized']['enabled']) && empty($this->configuration['is_panelized']['enabled']))) && !$this->isNegated()) {
+      return TRUE;
+    }
 
     // Page Manager support for Panels.
     $request = $this->requestStack->getCurrentRequest();
     $page_manager = $request->attributes->get('page_manager_page');
     if (!empty($page_manager) && $page_manager->access('view')) {
-      $variants = $page_manager->getVariants();
-      foreach ($variants as $variant) {
-        if ($variant->access('view')) {
-          /** @var \Drupal\ctools\Plugin\BlockVariantInterface $variant_plugin */
-          $variant_plugin = $variant->getVariantPlugin();
-          if ($variant_plugin->pluginId != 'http_status_code') {
-            foreach ($variant_plugin->getRegionAssignments() as $blocks) {
-              /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
-              foreach ($blocks as $block) {
-                if ($block->getPluginId() == 'page_title_block') {
-                  return FALSE;
-                }
+      $variant = $request->attributes->get('page_manager_page_variant');
+      if ($variant->access('view')) {
+        /** @var \Drupal\ctools\Plugin\BlockVariantInterface $variant_plugin */
+        $variant_plugin = $variant->getVariantPlugin();
+        if ($variant_plugin->pluginId != 'http_status_code') {
+          foreach ($variant_plugin->getRegionAssignments() as $blocks) {
+            /** @var \Drupal\Core\Block\BlockPluginInterface[] $blocks */
+            foreach ($blocks as $block) {
+              if ($block->getPluginId() == 'page_title_block') {
+                return TRUE;
               }
             }
           }
@@ -138,7 +140,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
             $configuration = $plugin->getConfiguration();
             if ($configuration['id'] == 'field_block:node:page:title' ||
                 $configuration['id'] == 'page_title_block') {
-              return FALSE;
+              return TRUE;
             }
           }
         }
@@ -149,7 +151,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
             $display = lightning_layout_entity_get_display($entity->getEntityTypeId(), $entity->getType(), $view_mode);
             if (($display instanceof LayoutBuilderEntityViewDisplay)) {
               if ($display->getComponent('title')) {
-                return FALSE;
+                return TRUE;
               }
             }
           }
@@ -170,7 +172,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
 
       $displays = $panelizer->getDefaultPanelsDisplays($node->getEntityTypeId(), $node->bundle(), $view_mode);
       if (!array_key_exists('default', $displays)) {
-        return FALSE;
+        return TRUE;
       }
       $display = $displays['default'];
 
@@ -179,7 +181,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
       $content = $render_display->get('content');
 
       if (isset($content['title'])) {
-        return FALSE;
+        return TRUE;
       }
     }
 
@@ -198,7 +200,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
 
       $displays = $panelizer->getDefaultPanelsDisplays($taxonomy_term->getEntityTypeId(), $taxonomy_term->bundle(), $view_mode);
       if (!array_key_exists('default', $displays)) {
-        return FALSE;
+        return TRUE;
       }
       $display = $displays['default'];
 
@@ -207,11 +209,11 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
       $content = $render_display->get('content');
 
       if (isset($content['name'])) {
-        return FALSE;
+        return TRUE;
       }
     }
 
-    return TRUE;
+    return FALSE;
 
   }
 
@@ -219,17 +221,16 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    * Provides a human readable summary of the condition's configuration.
    */
   public function summary() {
-    if (empty($this->configuration['enabled'])) {
-      return t('Enabled');
+    if (!empty($this->configuration['is_panelized'])) {
+      return t('Is a panelized page with a title');
     }
-    return t('Disabled');
   }
 
   /**
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return ['enabled' => FALSE] + parent::defaultConfiguration();
+    return ['is_panelized' => []] + parent::defaultConfiguration();
   }
 
 }
