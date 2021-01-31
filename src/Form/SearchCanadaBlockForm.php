@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Builds the search form for the search block.
  */
-class SearchApiBlockForm extends FormBase {
+class SearchCanadaBlockForm extends FormBase {
 
   /**
    * The config factory.
@@ -70,23 +70,20 @@ class SearchApiBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'wxt_search_api_block_form';
+    return 'wxt_search_canada_block_form';
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $wxt_active = $this->wxtLibraryServiceWxT->getLibraryName();
+
     $submit_title = $this->t('Search');
 
-    $form['#action'] = '/search/content';
-    $form['#method'] = 'get';
-
-    $form['search_api_fulltext'] = [
+    $form['keys'] = [
       '#id' => 'wb-srch-q',
       '#type' => 'search',
-      '#title' => '',
+      '#title' => t('Search'),
       '#title_display' => 'invisible',
       '#size' => 27,
       '#maxlength' => 128,
@@ -110,9 +107,57 @@ class SearchApiBlockForm extends FormBase {
       '#id' => 'wb-srch-sub',
     ];
 
+    $form['submit_container']['submit']['#value'] = '';
+    $form['keys']['#placeholder'] = $this->t('Search website');
+
+    $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+    $form['#action'] = 'https://www.canada.ca/' . $lang . '/sr/srb.html#wb_land';
+    $form['#method'] = 'get';
+
+    $form['keys']['#placeholder'] = $this->t('Search Canada.ca');
+    $form['keys']['#name'] = 'q';
+
+    $form['cdn'] = [
+      '#name' => 'cdn',
+      '#value' => 'canada',
+      '#type' => 'hidden',
+      '#input' => 'TRUE',
+    ];
+    $form['st'] = [
+      '#name' => 'st',
+      '#value' => 's',
+      '#type' => 'hidden',
+      '#input' => 'TRUE',
+    ];
+    $form['num'] = [
+      '#name' => 'num',
+      '#value' => '10',
+      '#type' => 'hidden',
+      '#input' => 'TRUE',
+    ];
+    $form['langs'] = [
+      '#name' => 'langs',
+      '#value' => 'eng',
+      '#type' => 'hidden',
+      '#input' => 'TRUE',
+    ];
+    $form['st1rt'] = [
+      '#name' => 'st1rt',
+      '#value' => '0',
+      '#type' => 'hidden',
+      '#input' => 'TRUE',
+    ];
+    $form['s5bm3ts21rch'] = [
+      '#name' => 's5bm3ts21rch',
+      '#value' => 'x',
+      '#type' => 'hidden',
+      '#input' => 'TRUE',
+    ];
+
     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
       $form['submit_container']['submit']['#value'] = '';
-      $form['search_api_fulltext']['#placeholder'] = $this->t('Search website');
+      $form['keys']['#placeholder'] = $this->t('Search website');
     }
 
     return $form;
@@ -122,10 +167,7 @@ class SearchApiBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Remove unneeded values.
-    $form_state->cleanValues();
-
-    parent::submitForm($form, $form_state);
+    // This form submits to the search page, so processing happens there.
   }
 
 }

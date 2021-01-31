@@ -2,7 +2,6 @@
 
 namespace Drupal\wxt_library\Form;
 
-use Drupal\bootstrap\Bootstrap;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -139,53 +138,6 @@ class SearchBlockForm extends FormBase {
     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
       $form['submit_container']['submit']['#value'] = '';
       $form['keys']['#placeholder'] = $this->t('Search website');
-      $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
-      if (!empty($wxt_gcweb_search)) {
-        $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
-
-        $form['#action'] = 'https://www.canada.ca/' . $lang . '/sr/srb.html#wb_land';
-        $form['#method'] = 'get';
-
-        $form['keys']['#placeholder'] = $this->t('Search Canada.ca');
-        $form['keys']['#name'] = 'q';
-
-        $form['cdn'] = [
-          '#name' => 'cdn',
-          '#value' => 'canada',
-          '#type' => 'hidden',
-          '#input' => 'TRUE',
-        ];
-        $form['st'] = [
-          '#name' => 'st',
-          '#value' => 's',
-          '#type' => 'hidden',
-          '#input' => 'TRUE',
-        ];
-        $form['num'] = [
-          '#name' => 'num',
-          '#value' => '10',
-          '#type' => 'hidden',
-          '#input' => 'TRUE',
-        ];
-        $form['langs'] = [
-          '#name' => 'langs',
-          '#value' => 'eng',
-          '#type' => 'hidden',
-          '#input' => 'TRUE',
-        ];
-        $form['st1rt'] = [
-          '#name' => 'st1rt',
-          '#value' => '0',
-          '#type' => 'hidden',
-          '#input' => 'TRUE',
-        ];
-        $form['s5bm3ts21rch'] = [
-          '#name' => 's5bm3ts21rch',
-          '#value' => 'x',
-          '#type' => 'hidden',
-          '#input' => 'TRUE',
-        ];
-      }
     }
 
     // SearchPageRepository::getDefaultSearchPage() depends on search.settings.
