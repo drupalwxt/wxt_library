@@ -115,8 +115,20 @@ class SearchApiBlockForm extends FormBase {
       $form['search_api_fulltext']['#placeholder'] = $this->t('Search website');
     }
 
+    $form['#after_build'] = ['::afterBuild'];
     return $form;
   }
+
+  /**
+   * Custom after build to remove elements from being submitted as GET variables.
+   */
+  public function afterBuild(array $element, FormStateInterface $form_state) {
+    // Remove the form_build_id, form_id and op from the GET parameters.
+    unset($element['form_build_id']);
+    unset($element['form_id']);
+    unset($element['op']);
+    return $element;
+   }
 
   /**
    * {@inheritdoc}
