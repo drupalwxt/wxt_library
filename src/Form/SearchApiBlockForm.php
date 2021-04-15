@@ -128,7 +128,7 @@ class SearchApiBlockForm extends FormBase {
     unset($element['form_id']);
     unset($element['op']);
     return $element;
-   }
+  }
 
   /**
    * {@inheritdoc}
