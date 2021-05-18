@@ -138,7 +138,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
 
-    $type = $this->getDerivativeId();
+    $type = 'language_content';
     $language = $this->languageManager->getCurrentLanguage($type)->getId();
     $theme_config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $theme_config->get('wxt.theme');
