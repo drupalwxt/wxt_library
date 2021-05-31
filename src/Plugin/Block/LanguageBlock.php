@@ -138,7 +138,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
 
-    $type = 'language_content';
+    $type = $this->getDerivativeId();
     $language = $this->languageManager->getCurrentLanguage($type)->getId();
     $theme_config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $theme_config->get('wxt.theme');
@@ -146,13 +146,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
 
     if (isset($links->links)) {
       // Don't show all defined languages in language switcher.
-      $toggle = FALSE;
-      foreach ($config['language_toggle'] as $enabled) {
-        if ($enabled === $wxt_active) {
-          $toggle = TRUE;
-        }
-      }
-      if (!$toggle) {
+      if (!empty($links->links[$language])) {
         unset($links->links[$language]);
       }
       $wxt_active = str_replace('-', '_', $wxt_active);
