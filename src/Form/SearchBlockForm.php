@@ -117,9 +117,6 @@ class SearchBlockForm extends FormBase {
       '#maxlength' => 128,
       '#default_value' => '',
       '#placeholder' => '',
-      '#attributes' => [
-        'title' => $this->t('Enter the terms you wish to search for.'),
-      ],
     ];
 
     $form['submit_container'] = [
