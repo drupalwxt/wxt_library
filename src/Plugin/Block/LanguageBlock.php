@@ -8,6 +8,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -138,7 +139,8 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
 
-    $type = $this->getDerivativeId();
+    $language_types = $this->languageManager->getLanguageTypes();
+    $type = in_array(LanguageInterface::TYPE_CONTENT, $language_types) ? LanguageInterface::TYPE_CONTENT : LanguageInterface::TYPE_INTERFACE;
     $language = $this->languageManager->getCurrentLanguage($type)->getId();
     $theme_config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $theme_config->get('wxt.theme');
