@@ -94,6 +94,11 @@ class SearchApiBlockForm extends FormBase {
       '#placeholder' => '',
     ];
 
+    if ($wxt_active == 'gc_intranet') {
+      $form['search_api_fulltext']['#size'] = 21;
+      $form['search_api_fulltext']['#maxlength'] = 150;
+    }
+
     $form['submit_container'] = [
       '#type' => 'container',
       '#attributes' => [
@@ -110,6 +115,11 @@ class SearchApiBlockForm extends FormBase {
     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
       $form['submit_container']['submit']['#value'] = '';
       $form['search_api_fulltext']['#placeholder'] = $this->t('Search website');
+    }
+
+    if ($wxt_active == 'gc_intranet') {
+      $form['submit_container']['submit']['#value'] = '';
+      $form['search_api_fulltext']['#placeholder'] = $this->t('Search GCIntranet');
     }
 
     $form['#after_build'] = ['::afterBuild'];

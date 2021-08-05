@@ -154,7 +154,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
       $wxt_active = str_replace('-', '_', $wxt_active);
       $wxt_active = str_replace('theme_', '', $wxt_active);
 
-      if ($wxt_active == 'gcweb') {
+      if ($wxt_active == 'gcweb' || $wxt_active == 'gc_intranet') {
         if ($language == 'en') {
           $title_fr = $links->links['fr']['title'];
           $links->links['fr']['title'] = Markup::create('<span class="hidden-xs">' . $title_fr . '</span><abbr title="' . $title_fr . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr</abbr>');

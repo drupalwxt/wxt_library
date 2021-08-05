@@ -107,7 +107,7 @@ class SearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
     $wxt_active = $this->wxtLibraryServiceWxT->getLibraryName();
     $wxt_gcweb_search = Bootstrap::getTheme()->getSetting('wxt_gcweb_search');
 
-    if (!empty($wxt_gcweb_search) && ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy')) {
+    if (!empty($wxt_gcweb_search) && ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy' || $wxt_active == 'gc_intranet')) {
       return $this->formBuilder->getForm('Drupal\wxt_library\Form\SearchCanadaBlockForm');
     }
     elseif ($this->moduleHandler->moduleExists('wxt_ext_search')) {

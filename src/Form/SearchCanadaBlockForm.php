@@ -91,6 +91,11 @@ class SearchCanadaBlockForm extends FormBase {
       '#placeholder' => '',
     ];
 
+    if ($wxt_active == 'gc_intranet') {
+      $form['keys']['#size'] = 21;
+      $form['keys']['#maxlength'] = 150;
+    }
+
     $form['submit_container'] = [
       '#type' => 'container',
       '#attributes' => [
@@ -157,6 +162,12 @@ class SearchCanadaBlockForm extends FormBase {
       $form['submit_container']['submit']['#value'] = '';
       $form['keys']['#placeholder'] = $this->t('Search Canada.ca');
     }
+
+    if ($wxt_active == 'gc_intranet') {
+      $form['submit_container']['submit']['#value'] = '';
+      $form['keys']['#placeholder'] = $this->t('Search GCIntranet');
+    }
+
 
     return $form;
   }

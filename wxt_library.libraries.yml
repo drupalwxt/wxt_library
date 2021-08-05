@@ -51,7 +51,20 @@ theme-gc-intranet:
   css:
     theme:
       /libraries/theme-gc-intranet/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-gc-intranet/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
+      /libraries/theme-gc-intranet/css/cdtsfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
+      /libraries/theme-gc-intranet/css/gctheme.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
+  dependencies:
+    - core/jquery
+
+theme-gc-intranet-legacy:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gc-intranet-legacy/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
+      /libraries/theme-gc-intranet-legacy/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -208,7 +221,22 @@ theme-gc-intranet-dev:
   css:
     theme:
       /libraries/theme-gc-intranet/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-gc-intranet/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
+      /libraries/theme-gc-intranet/css/cdtsfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
+      /libraries/theme-gc-intranet/css/gctheme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
+
+  dependencies:
+    - core/jquery
+
+
+theme-gc-intranet-legacy-dev:
+  remote: http://wet-boew.github.io
+  license:
+    name: MIT
+    gpl-compatible: true
+  css:
+    theme:
+      /libraries/theme-gc-intranet-legacy/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
+      /libraries/theme-gc-intranet-legacy/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
