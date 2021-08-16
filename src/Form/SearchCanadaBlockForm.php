@@ -168,7 +168,6 @@ class SearchCanadaBlockForm extends FormBase {
       $form['keys']['#placeholder'] = $this->t('Search GCIntranet');
     }
 
-
     return $form;
   }
 
