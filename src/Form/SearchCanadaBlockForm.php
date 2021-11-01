@@ -91,6 +91,7 @@ class SearchCanadaBlockForm extends FormBase {
       '#placeholder' => '',
     ];
 
+    $wxt_active = $this->wxtLibraryServiceWxT->getLibraryName();
     if ($wxt_active == 'gc_intranet') {
       $form['keys']['#size'] = 21;
       $form['keys']['#maxlength'] = 150;
