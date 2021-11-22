@@ -77,7 +77,7 @@ class SearchCanadaBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-
+    $wxt_active = $this->wxtLibraryServiceWxT->getLibraryName();
     $submit_title = $this->t('Search');
 
     $form['keys'] = [
@@ -157,7 +157,6 @@ class SearchCanadaBlockForm extends FormBase {
       '#input' => 'TRUE',
     ];
 
-    $wxt_active = $this->wxtLibraryServiceWxT->getLibraryName();
     if ($wxt_active == 'gcweb' || $wxt_active == 'gcweb_legacy') {
       $form['submit_container']['submit']['#value'] = '';
       $form['keys']['#placeholder'] = $this->t('Search Canada.ca');
