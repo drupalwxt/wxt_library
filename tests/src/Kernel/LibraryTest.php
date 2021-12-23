@@ -28,7 +28,6 @@ class LibraryTest extends KernelTestBase {
    * @var array
    */
   public static $modules = [
-    'tour',
     'wxt_library',
   ];
 
