@@ -233,7 +233,7 @@ function _wxt_library_get_libraries() {
     $profile = 'profiles/wxt';
   }
 
-  $conf_path = \Drupal::service('site.path');
+  $conf_path = \Drupal::getContainer()->getParameter('site.path');
 
   // Similar to 'modules' and 'themes' directories in the root directory,
   // certain distributions may want to place libraries into a 'libraries'

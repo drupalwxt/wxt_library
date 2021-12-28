@@ -27,7 +27,7 @@ class LibraryTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'wxt_library',
   ];
 
@@ -38,7 +38,7 @@ class LibraryTest extends KernelTestBase {
    */
   protected $pluginManager;
 
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installConfig('wxt_library');
