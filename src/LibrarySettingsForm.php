@@ -158,7 +158,7 @@ class LibrarySettingsForm extends ConfigFormBase {
         'visible' => [
           ':input[name="wxt_theme"]' => [
             [
-              'value' => 'theme-gc-intranet'
+              'value' => 'theme-gc-intranet',
             ],
           ],
         ],
