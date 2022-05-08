@@ -154,13 +154,15 @@ class LibrarySettingsForm extends ConfigFormBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Toggle blue intranet theme'),
       '#default_value' => $config->get('wxt.intranet_style'),
-      '#states' => array(
-        'visible' => array(
-          ':input[name="wxt_theme"]' => array(
-            array('value' => 'theme-gc-intranet')
-          ),
-        ),
-      ),
+      '#states' => [
+        'visible' => [
+          ':input[name="wxt_theme"]' => [
+            [
+              'value' => 'theme-gc-intranet'
+            ],
+          ],
+        ],
+      ],
     ];
 
     // Per-theme visibility.
