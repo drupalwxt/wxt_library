@@ -53,6 +53,7 @@ theme-gc-intranet:
       /libraries/theme-gc-intranet/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
       /libraries/theme-gc-intranet/css/cdtsfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
       /libraries/theme-gc-intranet/css/gctheme.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
+      /libraries/theme-gc-intranet/css/gctheme-blue.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
       /libraries/theme-gc-intranet/css/wxtfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
   dependencies:
     - core/jquery
