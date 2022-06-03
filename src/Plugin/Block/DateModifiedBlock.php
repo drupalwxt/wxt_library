@@ -9,6 +9,7 @@ use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -145,8 +146,15 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
 
     // Node context.
     $node = $this->requestStack->getCurrentRequest()->get('node');
-    if (is_object($node)) {
-      $time = $node->getChangedTime();
+    if ($node instanceof NodeInterface) {
+      // Get Date Published field value if exist.
+      if ($node->hasField('field_date_modified') && !$node->get('field_date_modified')->isEmpty()) {
+        $value = $node->get('field_date_modified')->value;
+        $time = strtotime($value);
+      }
+      else {
+        $time = $node->getChangedTime();
+      }
     }
 
     // Formatting of date.
