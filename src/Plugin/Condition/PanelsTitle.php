@@ -222,7 +222,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
    */
   public function summary() {
     if (!empty($this->configuration['is_panelized'])) {
-      return t('Is a panelized page with a title');
+      return $this->t('Is a panelized page with a title');
     }
   }
 

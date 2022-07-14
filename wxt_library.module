@@ -121,7 +121,8 @@ function _wxt_library_check_theme() {
 function _wxt_library_check_url() {
   // Make it possible deactivate bootstrap with
   // parameter ?wxt_library=no in the url.
-  if (isset($_GET['wxt_library']) && $_GET['wxt_library'] == 'no') {
+  $query_string = \Drupal::service('request_stack')->getCurrentRequest()->query->get('wxt_library');
+  if (isset($query_string) && $query_string == 'no') {
     return FALSE;
   }
 
@@ -181,12 +182,12 @@ function _wxt_library_options() {
 /**
  * Gets the path of a library.
  *
- * @param $name
+ * @param string $name
  *   The machine name of a library to return the path for.
- * @param $base_path
+ * @param string $base_path
  *   Whether to prefix the resulting path with base_path().
  *
- * @return
+ * @return string
  *   The path to the specified library or FALSE if the library wasn't found.
  */
 function _wxt_library_get_path($name, $base_path = FALSE) {
@@ -218,7 +219,7 @@ function _wxt_library_get_path($name, $base_path = FALSE) {
  * in both the site-wide directory and site-specific directory, only the
  * site-specific version will be listed.
  *
- * @return
+ * @return array
  *   A list of library directories.
  */
 function _wxt_library_get_libraries() {

@@ -124,8 +124,6 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
     $current = $this->urlGenerator->generateFromRoute('<current>', [], [], TRUE)->getGeneratedUrl();
     $front = $this->aliasManager->getPathByAlias($current);
     $frontAlias = $this->configFactory->get('system.site')->get('page.front');
-
-    $config = $this->configuration;
     $build = [];
     $route_name = $this->pathMatcher->isFrontPage() ? '<front>' : '<current>';
 

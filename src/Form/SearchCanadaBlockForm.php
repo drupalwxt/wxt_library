@@ -6,6 +6,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\wxt_library\LibraryService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -20,6 +21,13 @@ class SearchCanadaBlockForm extends FormBase {
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
+
+  /**
+   * Language manager for retrieving the default langcode.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
 
   /**
    * The renderer.
@@ -40,6 +48,8 @@ class SearchCanadaBlockForm extends FormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    * @param \Drupal\wxt_library\LibraryService $wxt_library_service_wxt
@@ -47,10 +57,12 @@ class SearchCanadaBlockForm extends FormBase {
    */
   public function __construct(
     ConfigFactoryInterface $config_factory,
+    LanguageManagerInterface $language_manager,
     RendererInterface $renderer,
     LibraryService $wxt_library_service_wxt
   ) {
     $this->configFactory = $config_factory;
+    $this->languageManager = $language_manager;
     $this->renderer = $renderer;
     $this->wxtLibraryServiceWxT = $wxt_library_service_wxt;
   }
@@ -83,7 +95,7 @@ class SearchCanadaBlockForm extends FormBase {
     $form['keys'] = [
       '#id' => 'wb-srch-q',
       '#type' => 'search',
-      '#title' => t('Search'),
+      '#title' => $this->t('Search'),
       '#title_display' => 'invisible',
       '#size' => 27,
       '#maxlength' => 128,
@@ -112,7 +124,7 @@ class SearchCanadaBlockForm extends FormBase {
     $form['submit_container']['submit']['#value'] = '';
     $form['keys']['#placeholder'] = $this->t('Search website');
 
-    $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $lang = $this->languageManager->getCurrentLanguage()->getId();
 
     $form['#action'] = 'https://www.canada.ca/' . $lang . '/sr/srb.html#wb_land';
     $form['#method'] = 'get';

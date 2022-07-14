@@ -111,7 +111,7 @@ class SearchBlockForm extends FormBase {
     $form['keys'] = [
       '#id' => 'wb-srch-q',
       '#type' => 'search',
-      '#title' => t('Search'),
+      '#title' => $this->t('Search'),
       '#title_display' => 'invisible',
       '#size' => 27,
       '#maxlength' => 128,

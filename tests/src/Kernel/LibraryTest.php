@@ -38,6 +38,9 @@ class LibraryTest extends KernelTestBase {
    */
   protected $pluginManager;
 
+  /**
+   * Setup the test.
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -45,6 +48,9 @@ class LibraryTest extends KernelTestBase {
     $this->pluginManager = $this->container->get('wxt_library.service_wxt');
   }
 
+  /**
+   * Test the library.
+   */
   public function testLibrary() {
     $this->assertSame('wet_boew', $this->pluginManager->getLibraryName());
     $this->assertSame('/libraries/theme-wet-boew', $this->pluginManager->getLibraryPath());

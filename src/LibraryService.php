@@ -5,14 +5,21 @@ namespace Drupal\wxt_library;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Provides a library service for WxT.
+ */
 class LibraryService {
 
   /**
+   * Consructs the library name.
+   *
    * @var string
    */
   protected $libraryName;
 
   /**
+   * Consructs the library path.
+   *
    * @var string
    */
   protected $libraryPath;

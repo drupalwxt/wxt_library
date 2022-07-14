@@ -2,6 +2,9 @@
 
 namespace Drupal\wxt_library\TwigExtension;
 
+/**
+ * Provides a twig extension for WxT.
+ */
 class LibraryTwig extends \Twig_Extension {
 
   /**

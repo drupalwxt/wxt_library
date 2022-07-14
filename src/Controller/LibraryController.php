@@ -6,9 +6,14 @@ use Drupal\wxt_library\LibraryService;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Provides a library controller.
+ */
 class LibraryController extends ControllerBase {
 
   /**
+   * The library service.
+   *
    * @var \Drupal\wxt_library\LibraryService
    */
   protected $wxtLibraryService;

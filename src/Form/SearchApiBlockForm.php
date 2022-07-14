@@ -127,7 +127,7 @@ class SearchApiBlockForm extends FormBase {
   }
 
   /**
-   * Custom after build to remove elements from being submitted as GET variables.
+   * Remove elements from being submitted as GET variables.
    */
   public function afterBuild(array $element, FormStateInterface $form_state) {
     // Remove the form_build_id, form_id and op from the GET parameters.
