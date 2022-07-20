@@ -148,7 +148,7 @@ class PanelsTitle extends ConditionPluginBase implements ContainerFactoryPluginI
           // Layout Builder default display for supported entities.
           $view_modes = $this->entityDisplayRepository->getViewModeOptionsByBundle($entity->getEntityTypeId(), $entity->getType());
           foreach (array_keys($view_modes) as $view_mode) {
-            $display = lightning_layout_entity_get_display($entity->getEntityTypeId(), $entity->getType(), $view_mode);
+            $display = wxt_ext_layout_entity_get_display($entity->getEntityTypeId(), $entity->getType(), $view_mode);
             if (($display instanceof LayoutBuilderEntityViewDisplay)) {
               if ($display->getComponent('title')) {
                 return TRUE;
