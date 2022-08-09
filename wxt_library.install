@@ -16,7 +16,7 @@ function wxt_library_requirements($phase) {
   if ('runtime' == $phase) {
     $has_wxt_core = _wxt_library_verify_library('wxt_library', 'wet-boew');
     $requirements['wxt'] = [
-      'title' => t('WxT Core library'),
+      'title' => t('WxT Library'),
       'value' => $has_wxt_core ? t('Enabled') : t('Not found'),
     ];
 
