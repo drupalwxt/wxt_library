@@ -8,6 +8,7 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Installer\InstallerKernel;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Implements hook_help().
@@ -22,6 +23,41 @@ function wxt_library_help($route_name, RouteMatchInterface $route_match) {
       documentation for WET-BOEW</a>.',
       [':wet_boew_documentation' => 'https://wet-boew.github.io']) . '</p>';
       return $output;
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function wxt_library_menu_links_discovered_alter(&$links) {
+  // Conditionally add the WxT Library menu link.
+  if (\Drupal::moduleHandler()->moduleExists('wxt_core')) {
+    $links['wxt_library.settings'] = [
+      'title' => new TranslatableMarkup('WxT Library'),
+      'parent' => 'wxt_core.settings',
+      'route_name' => 'wxt_library.settings',
+      'description' => new TranslatableMarkup('Call WxT Bootstrap jQuery Framework using Drupal Libraries.'),
+      'menu_name' => 'admin',
+      'provider' => 'wxt_library',
+    ];
+  }
+  else {
+    $links['wxt_library.admin'] = [
+      'title' => new TranslatableMarkup('WxT'),
+      'parent' => 'system.admin_config',
+      'route_name' => 'wxt.settings',
+      'description' => new TranslatableMarkup('Various settings for altering the behavior of WxT modules.'),
+      'menu_name' => 'admin',
+      'provider' => 'wxt_library',
+    ];
+    $links['wxt_library.settings'] = [
+      'title' => new TranslatableMarkup('WxT Library'),
+      'parent' => 'wxt_library.admin',
+      'route_name' => 'wxt_library.settings',
+      'description' => new TranslatableMarkup('Call WxT Bootstrap jQuery Framework using Drupal Libraries.'),
+      'menu_name' => 'admin',
+      'provider' => 'wxt_library',
+    ];
   }
 }
 
