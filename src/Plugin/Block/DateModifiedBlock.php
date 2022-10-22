@@ -175,6 +175,7 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
     else {
       $formatted_date = $this->dateFormatStorage->load($format)->getPattern();
     }
+    $time = (int) $time;
     $date = $this->dateFormatter->format($time, 'custom', $formatted_date);
 
     $build = [];
