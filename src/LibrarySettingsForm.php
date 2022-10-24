@@ -164,6 +164,20 @@ class LibrarySettingsForm extends ConfigFormBase {
         ],
       ],
     ];
+    $form['wxt_library']['menu_type'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Toggle horizontal main menu display'),
+      '#default_value' => $config->get('wxt.menu_type'),
+      '#states' => [
+        'visible' => [
+          ':input[name="wxt_theme"]' => [
+            [
+              'value' => 'theme-gcweb',
+            ],
+          ],
+        ],
+      ],
+    ];
 
     // Per-theme visibility.
     $form['theme'] = [
@@ -243,6 +257,7 @@ class LibrarySettingsForm extends ConfigFormBase {
     $this->config('wxt_library.settings')
       ->set('wxt.theme', $form_state->getValue('wxt_theme'))
       ->set('wxt.intranet_style', $form_state->getValue('intranet_style'))
+      ->set('wxt.menu_type', $form_state->getValue('menu_type'))
       ->set('theme.visibility', $form_state->getValue('theme_visibility'))
       ->set('theme.themes', $form_state->getValue('theme_themes'))
       ->set('url.visibility', $form_state->getValue('url_visibility'))
