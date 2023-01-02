@@ -44,7 +44,7 @@ class Libraries extends PluginBase implements CKEditorPluginInterface, CKEditorP
    * {@inheritdoc}
    */
   public function getFile() {
-    return drupal_get_path('module', 'wxt_library') . '/js/plugins/wxtlibraries/plugin.js';
+    return \Drupal::service('extension.list.module')->getPath('wxt_library') . '/js/plugins/wxtlibraries/plugin.js';
   }
 
   /**
@@ -65,7 +65,7 @@ class Libraries extends PluginBase implements CKEditorPluginInterface, CKEditorP
     return [
       $wxt_active . '/css/theme.min.css',
       $wxt_active . '/css/wet-boew.min.css',
-      drupal_get_path('module', 'wxt_library') . '/css/plugins/wxtlibraries/ckeditor.wxtlibraries.css',
+      \Drupal::service('extension.list.module')->getPath('wxt_library') . '/css/plugins/wxtlibraries/ckeditor.wxtlibraries.css',
     ];
   }
 
