@@ -152,7 +152,7 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
    * {@inheritdoc}
    */
   public function build() {
-    $format = $this->configuration['date_modified'];
+    $format = $this->configuration['date_modified'] ?? 'tiny';
     $time = $this->dateTime->getRequestTime();
 
     // Node context.

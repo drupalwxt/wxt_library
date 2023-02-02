@@ -97,7 +97,11 @@ class ShareWidgetBlock extends BlockBase implements ContainerFactoryPluginInterf
    * {@inheritdoc}
    */
   public function build() {
-    $widget = $this->configuration['share_widget'];
+    $widget = $this->configuration['share_widget'] ?? NULL;
+
+    if (!$widget) {
+      return [];
+    }
 
     // JSON params.
     $data = [
