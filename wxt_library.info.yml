@@ -1,7 +1,7 @@
 name: 'WxT Library'
 description: 'Registers WxT Boostrap as a library.'
 type: module
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: '^9 || ^10'
 package: WxT
 configure: wxt_library.settings
 
