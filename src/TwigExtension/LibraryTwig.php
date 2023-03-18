@@ -2,6 +2,9 @@
 
 namespace Drupal\wxt_library\TwigExtension;
 
+use Twig_Extension;
+use Twig_SimpleFilter;
+
 /**
  * Provides a twig extension for WxT.
  */
