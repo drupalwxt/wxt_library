@@ -3,19 +3,19 @@
 namespace Drupal\wxt_library\TwigExtension;
 
 use Twig\Extension\AbstractExtension;
-use Twig_SimpleFilter;
+use Twig\TwigFilter;
 
 /**
  * Provides a twig extension for WxT.
  */
-class LibraryTwig extends \Twig\Extension\AbstractExtension {
+class LibraryTwig extends AbstractExtension {
 
   /**
    * Generates a list of all Twig filters that this extension defines.
    */
   public function getFilters() {
     return [
-      new \Twig\TwigFilter('wxtlibrary', [$this, 'getLibraryPath']),
+      new TwigFilter('wxtlibrary', [$this, 'getLibraryPath']),
     ];
   }
 
