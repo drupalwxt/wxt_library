@@ -2,7 +2,7 @@
 
 namespace Drupal\wxt_library\TwigExtension;
 
-use Twig_Extension;
+use Twig\Extension\AbstractExtension;
 use Twig_SimpleFilter;
 
 /**
