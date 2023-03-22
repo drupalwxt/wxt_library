@@ -125,14 +125,17 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
     $front = $this->aliasManager->getPathByAlias($current);
     $frontAlias = $this->configFactory->get('system.site')->get('page.front');
     $build = [];
-    $route_name = $this->pathMatcher->isFrontPage() ? '<front>' : '<current>';
+    $route_match = \Drupal::routeMatch();
+    // If there is no route match, for example when creating blocks on 404 pages
+    // for logged-in users with big_pipe enabled using the front page instead.
+    $url = $route_match->getRouteObject() ? Url::fromRouteMatch($route_match) : Url::fromRoute('<front>');
 
     $path_elements = explode('/', trim($front, '/'));
     foreach ($this->languageManager->getLanguages() as $language) {
       if (!empty($path_elements[0]) && $path_elements[0] == $language->getId()) {
         array_shift($path_elements);
         if (implode($path_elements) == trim($frontAlias, '/')) {
-          $route_name = '<front>';
+          $url = Url::fromRoute('<front>');
         }
       }
     }
@@ -142,7 +145,7 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
     $language = $this->languageManager->getCurrentLanguage($type)->getId();
     $theme_config = $this->configFactory->get('wxt_library.settings');
     $wxt_active = $theme_config->get('wxt.theme');
-    $links = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRoute($route_name));
+    $links = $this->languageManager->getLanguageSwitchLinks($type, $url);
 
     if (isset($links->links)) {
       // Don't show all defined languages in language switcher.
