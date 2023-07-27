@@ -4,9 +4,7 @@ wet-boew:
     name: MIT
     gpl-compatible: true
   js:
-    /libraries/wet-boew/js/ie8-wet-boew.min.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1 }
     /libraries/wet-boew/js/wet-boew.min.js: { preprocess: false, browsers: { IE: 'gte IE 9', '!IE': true }, minified: false, weight: -1 }
-    /libraries/wet-boew/js/ie8-wet-boew2.min.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1 }
   dependencies:
     - core/jquery
 
@@ -27,7 +25,6 @@ theme-wet-boew:
   css:
     theme:
       /libraries/theme-wet-boew/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-wet-boew/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -39,7 +36,6 @@ theme-base:
   css:
     theme:
       /libraries/theme-base/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-base/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -66,7 +62,6 @@ theme-gc-intranet-legacy:
   css:
     theme:
       /libraries/theme-gc-intranet-legacy/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-gc-intranet-legacy/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -78,7 +73,6 @@ theme-gcweb:
   css:
     theme:
       /libraries/theme-gcweb/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-gcweb/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   js:
     /libraries/theme-gcweb/js/theme.min.js: { preprocess: false, minified: false }
   dependencies:
@@ -92,7 +86,6 @@ theme-gcweb-legacy:
   css:
     theme:
       /libraries/theme-gcweb-legacy/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-gcweb-legacy/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   js:
     /libraries/theme-gcweb-legacy/js/theme.min.js: { preprocess: false, minified: false }
   dependencies:
@@ -106,7 +99,6 @@ theme-gcwu-fegc:
   css:
     theme:
       /libraries/theme-gcwu-fegc/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-gcwu-fegc/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -118,7 +110,6 @@ theme-ogpl:
   css:
     theme:
       /libraries/theme-ogpl/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
-      /libraries/theme-ogpl/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -130,7 +121,6 @@ theme-gcweb.messages:
   css:
     theme:
       /libraries/theme-gcweb/css/messages.min.css: { minified: true }
-      /libraries/theme-gcweb/css/ie8-messages.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -142,7 +132,6 @@ theme-gcweb.splash:
   css:
     theme:
       /libraries/theme-gcweb/css/theme-srv.min.css: { minified: true }
-      /libraries/theme-gcweb/css/ie8-theme-srv.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -154,7 +143,6 @@ theme-gcweb-library.messages:
   css:
     theme:
       /libraries/theme-gcweb-library/css/messages.min.css: { minified: true }
-      /libraries/theme-gcweb-library/css/ie8-messages.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -166,7 +154,6 @@ theme-gcweb-library.splash:
   css:
     theme:
       /libraries/theme-gcweb-library/css/theme-srv.min.css: { minified: true }
-      /libraries/theme-gcweb-library/css/ie8-theme-srv.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: true }
   dependencies:
     - core/jquery
 
@@ -176,9 +163,7 @@ wet-boew-dev:
     name: MIT
     gpl-compatible: true
   js:
-    /libraries/wet-boew/js/ie8-wet-boew.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1}
     /libraries/wet-boew/js/wet-boew.js: { preprocess: false, browsers: { IE: 'gte IE 9', '!IE': true }, minified: false, weight: -1 }
-    /libraries/wet-boew/js/ie8-wet-boew2.js: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false }, minified: false, weight: -1 }
   dependencies:
     - core/jquery
 
@@ -199,7 +184,6 @@ theme-wet-boew-dev:
   css:
     theme:
       /libraries/theme-wet-boew/css/theme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-wet-boew/css/ie8-theme.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -211,7 +195,6 @@ theme-base-dev:
   css:
     theme:
       /libraries/theme-base/css/theme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-base/css/ie8-theme.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -238,7 +221,6 @@ theme-gc-intranet-legacy-dev:
   css:
     theme:
       /libraries/theme-gc-intranet-legacy/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-gc-intranet-legacy/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -250,7 +232,6 @@ theme-gcweb-dev:
   css:
     theme:
       /libraries/theme-gcweb/css/theme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-gcweb/css/ie8-theme.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   js:
     /libraries/theme-gcweb/js/theme.js: { preprocess: false, minified: false }
   dependencies:
@@ -264,7 +245,6 @@ theme-gcweb-legacy-dev:
   css:
     theme:
       /libraries/theme-gcweb-legacy/css/theme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-gcweb-legacy/css/ie8-theme.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   js:
     /libraries/theme-gcweb-legacy/js/theme.js: { preprocess: false, minified: false }
   dependencies:
@@ -278,7 +258,6 @@ theme-gcwu-fegc-dev:
   css:
     theme:
       /libraries/theme-gcwu-fegc/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-gcwu-fegc/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -290,7 +269,6 @@ theme-ogpl-dev:
   css:
     theme:
       /libraries/theme-ogpl/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-      /libraries/theme-ogpl/css/ie8-theme.min.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -302,7 +280,6 @@ theme-gcweb-dev.messages:
   css:
     theme:
       /libraries/theme-gcweb/css/messages.css: { }
-      /libraries/theme-gcweb/css/ie8-messages.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -314,7 +291,6 @@ theme-gcweb-dev.splash:
   css:
     theme:
       /libraries/theme-gcweb/css/theme-srv.css: { }
-      /libraries/theme-gcweb/css/ie8-theme-srv.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -326,7 +302,6 @@ theme-gcweb-legacy-dev.messages:
   css:
     theme:
       /libraries/theme-gcweb-legacy/css/messages.css: { }
-      /libraries/theme-gcweb-legacy/css/ie8-messages.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
 
@@ -338,6 +313,5 @@ theme-gcweb-legacy-dev.splash:
   css:
     theme:
       /libraries/theme-gcweb-legacy/css/theme-srv.css: { }
-      /libraries/theme-gcweb-legacy/css/ie8-theme-srv.css: { preprocess: false, browsers: { IE: 'lt IE 9', '!IE': false } }
   dependencies:
     - core/jquery
