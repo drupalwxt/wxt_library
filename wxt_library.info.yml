@@ -1,5 +1,5 @@
 name: 'WxT Library'
-description: 'Registers WxT Boostrap as a library.'
+description: 'Integrates Drupal with WET-BOEW Framework Assets (CSS/JS).'
 type: module
 core_version_requirement: '^9 || ^10'
 package: WxT
