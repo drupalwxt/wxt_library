@@ -150,7 +150,19 @@ class SearchBlockForm extends FormBase {
     // SearchPageRepository::getDefaultSearchPage() depends on search.settings.
     $this->renderer->addCacheableDependency($form, $this->configFactory->get('search.settings'));
 
+    $form['#after_build'] = ['::afterBuild'];
     return $form;
+  }
+
+  /**
+   * Remove elements from being submitted as GET variables.
+   */
+  public function afterBuild(array $element, FormStateInterface $form_state) {
+    // Remove the form_build_id, form_id and op from the GET parameters.
+    unset($element['form_build_id']);
+    unset($element['form_id']);
+    unset($element['op']);
+    return $element;
   }
 
   /**
