@@ -5,6 +5,7 @@
  * Contains wxt_library.module.
  */
 
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Installer\InstallerKernel;
@@ -345,4 +346,49 @@ function wxt_library_preprocess_page(&$variables) {
   else {
     $variables['menu_type'] = 'default';
   }
+}
+
+/**
+ * Returns the entity view display associated with a bundle and view mode.
+ *
+ * This is an exact copy of the deprecated entity_get_display() from Core 8.6.x
+ *  except for one change: the default value of the $view_mode parameter.
+ *
+ * @todo Eliminate this in favor of
+ *   Drupal::service('entity_display.repository')->getViewDisplay() in Core
+ *   8.8.x once that is the lowest supported version.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param string $bundle
+ *   The bundle.
+ * @param string $view_mode
+ *   The view mode, or 'default' to retrieve the 'default' display object for
+ *   this bundle.
+ *
+ * @return \Drupal\Core\Entity\Display\EntityViewDisplayInterface
+ *   The entity view display associated with the view mode.
+ *
+ * @see \Drupal\Core\Entity\EntityStorageInterface::create()
+ * @see \Drupal\Core\Entity\EntityStorageInterface::load()
+ */
+function wxt_library_entity_get_display($entity_type, $bundle, $view_mode = 'default') {
+  // Try loading the display from configuration.
+  $display = EntityViewDisplay::load($entity_type . '.' . $bundle . '.' . $view_mode);
+
+  // If not found, create a fresh display object. We do not preemptively create
+  // new entity_view_display configuration entries for each existing entity type
+  // and bundle whenever a new view mode becomes available. Instead,
+  // configuration entries are only created when a display object is explicitly
+  // configured and saved.
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => $entity_type,
+      'bundle' => $bundle,
+      'mode' => $view_mode,
+      'status' => TRUE,
+    ]);
+  }
+
+  return $display;
 }
