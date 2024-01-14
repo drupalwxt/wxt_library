@@ -14,10 +14,10 @@
         }
     ],
     "require": {
-        "composer/installers": "^1.2 || ^2",
-        "cweagans/composer-patches": "^1.6.0",
+        "composer/installers": "^1.2 || ^2.1",
+        "cweagans/composer-patches": "^1.7",
         "oomphinc/composer-installers-extender": "^1.1 || ^2",
-        "drupal/core": "9.* || 10.*",
+        "drupal/core": "10.*",
         "wet-boew/wet-boew": "4.0.50.1",
         "wet-boew/theme-wet-boew": "4.0.41",
         "wet-boew/theme-base": "4.0.27",
