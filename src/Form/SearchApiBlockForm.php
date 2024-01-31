@@ -86,7 +86,7 @@ class SearchApiBlockForm extends FormBase {
     $form['search_api_fulltext'] = [
       '#id' => 'wb-srch-q',
       '#type' => 'search',
-      '#title' => '',
+      '#title' => $this->t('Search'),
       '#title_display' => 'invisible',
       '#size' => 27,
       '#maxlength' => 128,
