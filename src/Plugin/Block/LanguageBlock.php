@@ -157,12 +157,16 @@ class LanguageBlock extends BlockBase implements ContainerFactoryPluginInterface
 
       if ($wxt_active == 'gcweb') {
         if ($language == 'en') {
-          $title_fr = $links->links['fr']['title'];
-          $links->links['fr']['title'] = Markup::create('<span class="hidden-xs">' . $title_fr . '</span><abbr title="' . $title_fr . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr</abbr>');
+          if (isset($links->links['fr']) && !empty($links->links['fr'])) {
+            $title_fr = $links->links['fr']['title'];
+            $links->links['fr']['title'] = Markup::create('<span class="hidden-xs">' . $title_fr . '</span><abbr title="' . $title_fr . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">fr</abbr>');
+          }
         }
         elseif ($language == 'fr') {
-          $title_en = $links->links['en']['title'];
-          $links->links['en']['title'] = Markup::create('<span class="hidden-xs">' . $title_en . '</span><abbr title="' . $title_en . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">en</abbr>');
+          if (isset($links->links['en']) && !empty($links->links['en'])) {
+            $title_en = $links->links['en']['title'];
+            $links->links['en']['title'] = Markup::create('<span class="hidden-xs">' . $title_en . '</span><abbr title="' . $title_en . '" class="visible-xs h3 mrgn-tp-sm mrgn-bttm-0 text-uppercase">en</abbr>');
+          }
         }
       }
 
