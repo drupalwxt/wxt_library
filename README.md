@@ -1,8 +1,11 @@
 WxT Library
 ===========
 
-This module leverages the native Drupal library system to load WxT relevant
-assets.
+Integrates Drupal with the WET-BOEW jQuery Framework Assets.
+
+All of the assets can be pulled through the following composer repository:
+
+- [Composer External Dependencies][composer_extdeps]
 
 ## Installation
 
@@ -22,14 +25,14 @@ All dependencies are included as part of the [Drupal WxT][drupal_wxt]
 distribution and come completely configured alongside with additional
 integrations and workflow improvements.
 
-- [WxT][wxt] (8.x-1.x)
+- [WxT][wxt]
 
 ### StandAlone
 
 WxT Library at a minimum requires the following dependencies:
 
-- [Bootstrap][bootstrap] (8.x-3.5+)
-- [WxT Library][wxt_library] (8.x-1.0+)
+- [WxT Bootstrap][wxt_bootstrap]
+- [WxT Library][wxt_library]
 - [WxT jQuery Framework assets][wet_boew]
 
 You can easily retrieve these dependencies via composer:
@@ -40,9 +43,8 @@ composer require drupal/wxt_library
 
 <!-- Links Referenced -->
 
-[bootstrap]:      http://drupal.org/project/bootstrap
-[drupal_wxt]:     http://drupal.org/project/wxt
-[wet_boew]:       http://wet-boew.github.io
-[wxt]:            http://drupal.org/project/wxt
-[wxt_library]:    http://drupal.org/project/wxt_library
-[wxt_bootstrap]:  http://drupal.org/project/wxt_bootstrap
+[composer_extdeps]: https://github.com/drupalwxt/composer-extdeps
+[wet_boew]:         http://wet-boew.github.io
+[wxt]:              http://drupal.org/project/wxt
+[wxt_library]:      http://drupal.org/project/wxt_library
+[wxt_bootstrap]:    http://drupal.org/project/wxt_bootstrap

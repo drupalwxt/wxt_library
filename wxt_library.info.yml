@@ -1,5 +1,5 @@
 name: 'WxT Library'
-description: 'Integrates Drupal with WET-BOEW Framework Assets (CSS/JS).'
+description: 'Integrates Drupal with the WET-BOEW jQuery Framework Assets.'
 type: module
 core_version_requirement: '^9 || ^10'
 package: WxT
