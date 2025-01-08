@@ -18,7 +18,7 @@
         "cweagans/composer-patches": "^1.7",
         "oomphinc/composer-installers-extender": "^1.1 || ^2",
         "drupal/core": "11.*",
-        "wet-boew/wet-boew": "4.0.75",
+        "wet-boew/wet-boew": "4.0.83",
         "wet-boew/theme-gcweb": "14.6.0",
         "wet-boew/theme-wet-boew": "4.0.41",
         "wet-boew/theme-base": "4.0.27",
