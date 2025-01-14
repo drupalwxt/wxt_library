@@ -4,6 +4,7 @@ namespace Drupal\wxt_library;
 
 use Drupal\Core\Asset\AssetCollectionOptimizerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -56,6 +57,8 @@ class LibrarySettingsForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
+   * @param \Drupal\Core\Config\TypedConfigManagerInterface $typed_config_manager
+   *   The typed config manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $render_cache
    *   The render_cache handler.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
@@ -67,8 +70,16 @@ class LibrarySettingsForm extends ConfigFormBase {
    * @param \Drupal\Core\Extension\ThemeHandlerInterface $theme_handler
    *   The theme handler.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, CacheBackendInterface $render_cache, DateFormatterInterface $date_formatter, AssetCollectionOptimizerInterface $css_collection_optimizer, AssetCollectionOptimizerInterface $js_collection_optimizer, ThemeHandlerInterface $theme_handler) {
-    parent::__construct($config_factory);
+  public function __construct(
+    ConfigFactoryInterface $config_factory,
+    TypedConfigManagerInterface $typed_config_manager,
+    CacheBackendInterface $render_cache,
+    DateFormatterInterface $date_formatter,
+    AssetCollectionOptimizerInterface $css_collection_optimizer,
+    AssetCollectionOptimizerInterface $js_collection_optimizer,
+    ThemeHandlerInterface $theme_handler
+  ) {
+    parent::__construct($config_factory, $typed_config_manager);
 
     $this->renderCache = $render_cache;
     $this->dateFormatter = $date_formatter;
@@ -83,6 +94,7 @@ class LibrarySettingsForm extends ConfigFormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
+      $container->get('config.typed'),
       $container->get('cache.render'),
       $container->get('date.formatter'),
       $container->get('asset.css.collection_optimizer'),
