@@ -315,3 +315,9 @@ theme-gcweb-legacy-dev.splash:
       /libraries/theme-gcweb-legacy/css/theme-srv.css: { }
   dependencies:
     - core/jquery
+
+wxt_library_polyfills:
+  js:
+    js/wxt-library-polyfills.js: {}
+  dependencies:
+    - core/jquery

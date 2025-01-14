@@ -329,6 +329,8 @@ function wxt_library_preprocess_html(&$variables) {
   if ($wxt_active == 'theme-gc-intranet' && $blue_intranet) {
     $variables['attributes']['class'][] = 'intranet-blue';
   }
+
+  $variables['#attached']['library'][] = 'wxt_library/wxt_library_polyfills';
 }
 
 /**
