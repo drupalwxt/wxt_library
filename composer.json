@@ -28,6 +28,13 @@
         "wet-boew/theme-gcweb-legacy": "4.0.29",
         "wet-boew/theme-ogpl": "4.0.27"
     },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "oomphinc/composer-installers-extender": true,
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
