@@ -32,7 +32,7 @@
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
-            "oomphinc/composer-installers-extender": true,
+            "oomphinc/composer-installers-extender": true
         }
     },
     "minimum-stability": "dev",
