@@ -59,7 +59,7 @@ class SearchCanadaBlockForm extends FormBase {
     ConfigFactoryInterface $config_factory,
     LanguageManagerInterface $language_manager,
     RendererInterface $renderer,
-    LibraryService $wxt_library_service_wxt
+    LibraryService $wxt_library_service_wxt,
   ) {
     $this->configFactory = $config_factory;
     $this->languageManager = $language_manager;

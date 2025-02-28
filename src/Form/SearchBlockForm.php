@@ -60,7 +60,7 @@ class SearchBlockForm extends FormBase {
     SearchPageRepositoryInterface $search_page_repository,
     ConfigFactoryInterface $config_factory,
     RendererInterface $renderer,
-    LibraryService $wxt_library_service_wxt
+    LibraryService $wxt_library_service_wxt,
   ) {
     $this->searchPageRepository = $search_page_repository;
     $this->configFactory = $config_factory;

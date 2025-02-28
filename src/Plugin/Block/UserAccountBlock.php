@@ -39,10 +39,10 @@ class UserAccountBlock extends BlockBase implements ContainerFactoryPluginInterf
    *   The Account Proxy.
    */
   public function __construct(
-        array $configuration,
-        $plugin_id,
-        $plugin_definition,
-        AccountProxy $current_user
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    AccountProxy $current_user,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->currentUser = $current_user;

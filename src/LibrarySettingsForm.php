@@ -77,7 +77,7 @@ class LibrarySettingsForm extends ConfigFormBase {
     DateFormatterInterface $date_formatter,
     AssetCollectionOptimizerInterface $css_collection_optimizer,
     AssetCollectionOptimizerInterface $js_collection_optimizer,
-    ThemeHandlerInterface $theme_handler
+    ThemeHandlerInterface $theme_handler,
   ) {
     parent::__construct($config_factory, $typed_config_manager);
 

@@ -48,7 +48,7 @@ class SearchApiBlockForm extends FormBase {
   public function __construct(
     ConfigFactoryInterface $config_factory,
     RendererInterface $renderer,
-    LibraryService $wxt_library_service_wxt
+    LibraryService $wxt_library_service_wxt,
   ) {
     $this->configFactory = $config_factory;
     $this->renderer = $renderer;

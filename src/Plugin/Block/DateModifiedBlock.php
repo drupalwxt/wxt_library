@@ -78,14 +78,14 @@ class DateModifiedBlock extends BlockBase implements ContainerFactoryPluginInter
    *   The date time service.
    */
   public function __construct(
-        array $configuration,
-        $plugin_id,
-        $plugin_definition,
-        EntityStorageInterface $date_format_storage,
-        DateFormatter $date_formatter,
-        RequestStack $request_stack,
-        EntityStorageInterface $node_storage,
-        TimeInterface $date_time
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityStorageInterface $date_format_storage,
+    DateFormatter $date_formatter,
+    RequestStack $request_stack,
+    EntityStorageInterface $node_storage,
+    TimeInterface $date_time,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->dateFormatStorage = $date_format_storage;

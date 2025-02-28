@@ -66,7 +66,7 @@ class SearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
     $plugin_definition,
     ModuleHandlerInterface $module_handler,
     FormBuilderInterface $form_builder,
-    LibraryService $wxt_library_service_wxt
+    LibraryService $wxt_library_service_wxt,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->moduleHandler = $module_handler;
@@ -81,7 +81,7 @@ class SearchBlock extends BlockBase implements ContainerFactoryPluginInterface {
     ContainerInterface $container,
     array $configuration,
     $plugin_id,
-    $plugin_definition
+    $plugin_definition,
   ) {
     return new static(
       $configuration,
