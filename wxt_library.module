@@ -77,7 +77,7 @@ function wxt_library_page_attachments(array &$page) {
     return;
   }
 
-  wxt_library_add_page_attachments($page);
+  _wxt_library_add_page_attachments($page);
 }
 
 /**
@@ -86,7 +86,7 @@ function wxt_library_page_attachments(array &$page) {
  * @param array &$page
  *   The array to add the attachments to.
  */
-function wxt_library_add_page_attachments(array &$page): void {
+function _wxt_library_add_page_attachments(array &$page): void {
   $config = \Drupal::config('wxt_library.settings');
   $variant = ($config->get('minimized.options')) ? 'minified' : 'source';
   $wxt_libraries = _wxt_library_options() + ['wet-boew' => t('Core')];
