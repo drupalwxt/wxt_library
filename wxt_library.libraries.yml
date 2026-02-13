@@ -51,6 +51,8 @@ theme-gc-intranet:
       /libraries/theme-gc-intranet/css/gctheme.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
       /libraries/theme-gc-intranet/css/gctheme-blue.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
       /libraries/theme-gc-intranet/css/wxtfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
+  js:
+    /libraries/theme-gc-intranet/js/theme.min.js: { browsers: { IE: 'gte IE 9', '!IE': true }, minified: true }
   dependencies:
     - core/jquery
 
@@ -208,10 +210,10 @@ theme-gc-intranet-dev:
       /libraries/theme-gc-intranet/css/theme.min.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
       /libraries/theme-gc-intranet/css/cdtsfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
       /libraries/theme-gc-intranet/css/gctheme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
-
+  js:
+    /libraries/theme-gc-intranet/js/theme.min.js: { browsers: { IE: 'gte IE 9', '!IE': true } }
   dependencies:
     - core/jquery
-
 
 theme-gc-intranet-legacy-dev:
   remote: http://wet-boew.github.io
