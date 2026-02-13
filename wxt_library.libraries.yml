@@ -211,7 +211,7 @@ theme-gc-intranet-dev:
       /libraries/theme-gc-intranet/css/cdtsfixes.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
       /libraries/theme-gc-intranet/css/gctheme.css: { browsers: { IE: 'gte IE 9', '!IE': true } }
   js:
-    /libraries/theme-gc-intranet/js/theme.min.js: { browsers: { IE: 'gte IE 9', '!IE': true } }
+    /libraries/theme-gc-intranet/js/theme.js: { browsers: { IE: 'gte IE 9', '!IE': true } }
   dependencies:
     - core/jquery
 
