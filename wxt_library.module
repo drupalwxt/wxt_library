@@ -102,38 +102,6 @@ function wxt_library_page_attachments(array &$page) {
       $page['#attached']['library'][] = 'wxt_library/' . $wxt_active . $min . '.messages';
     }
   }
-
-  // WxT noscript handling.
-  $library_discovery = \Drupal::service('library.discovery');
-  if ($variant == 'minified') {
-    $library_name = 'wet-boew.noscript';
-  }
-  else {
-    $library_name = 'wet-boew-dev.noscript';
-  }
-  $library = $library_discovery->getLibraryByName('wxt_library', $library_name);
-  if ($library['css']) {
-    foreach ($library['css'] as $css) {
-      if ($css['type'] == 'file') {
-        if (file_exists(DRUPAL_ROOT . '/' . $css['data'])) {
-          $custom_tags = [
-            'WxTNoScript' => [
-              '#tag' => 'link',
-              '#noscript' => TRUE,
-              '#attributes' => [
-                'rel' => 'stylesheet',
-                'href' => \Drupal::service('file_url_generator')->generateString($css['data']),
-              ],
-            ],
-          ];
-          foreach ($custom_tags as $key => $value) {
-            $page['#attached']['html_head'][] = [$value, $key];
-          }
-        }
-      }
-    }
-  }
-
 }
 
 /**
@@ -329,6 +297,15 @@ function wxt_library_preprocess_html(&$variables) {
   if ($wxt_active == 'theme-gc-intranet' && $blue_intranet) {
     $variables['attributes']['class'][] = 'intranet-blue';
   }
+
+  $config = \Drupal::config('wxt_library.settings');
+  $variant = $config->get('minimized.options') ? 'minified' : 'source';
+
+  $file = ($variant === 'minified')
+    ? '/libraries/wet-boew/css/noscript.min.css'
+    : '/libraries/wet-boew/css/noscript.css';
+
+  $variables['wxt_noscript_href'] = $file;
 }
 
 /**
